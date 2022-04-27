@@ -6,6 +6,7 @@ function Login() {
     user,
     handleChangeUser,
     validateUser,
+    handleClickUser,
   } = useContext(LoginContext);
   const { email, password } = user;
 
@@ -41,6 +42,7 @@ function Login() {
           type="submit"
           data-testid="login-submit-btn"
           disabled={ validateUser() }
+          onClick={ handleClickUser }
         >
           Enter
         </button>
