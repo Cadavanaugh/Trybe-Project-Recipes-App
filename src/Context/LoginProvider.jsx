@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   return (
     <div>
-      <LoginContext.Provider value={ { algo } }>
+      <LoginContext.Provider>
         { children }
       </LoginContext.Provider>
     </div>
