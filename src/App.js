@@ -2,11 +2,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Drinks from './Pages/Drinks';
-import Explore from './Pages/Explore';
-import Foods from './Pages/Foods';
-import Login from './Pages/Login';
-import Profile from './Pages/Profile';
+import Drinks from './pages/Drinks';
+import Explore from './pages/Explore';
+import Foods from './pages/Foods';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -23,14 +23,15 @@ function App() {
           component={ DrinksInProgress }/> */}
         <Route exact path="/explore" component={ Explore } />
         {/* <Route exact path="/explore/foods" component={ ExploreFoods } />
-          <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-          <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
-          <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients }/>
-          <Route
-          exact path="/explore/foods/nationalities" component={ Nationalities } /> */}
+        <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+        <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
+        <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
+        <Route exact
+          path="/explore/foods/nationalities"
+          component={ Nationalities } /> */}
         <Route exact path="/profile" component={ Profile } />
         {/* <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } /> */}
+        <Route exact path="/favorite-recipes" component={ FavoriteRecipes } /> */}
       </Switch>
     </div>
   );

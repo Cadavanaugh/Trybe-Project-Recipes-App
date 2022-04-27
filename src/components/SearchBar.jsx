@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import RecipesContext from '../Context/RecipesContext';
+import RecipesContext from '../context/RecipesContext';
 
 export default function SearchBar() {
   const { radioSearch, valueRadioButton, searchFoods } = useContext(RecipesContext);
