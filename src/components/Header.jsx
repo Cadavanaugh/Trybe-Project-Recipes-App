@@ -1,33 +1,16 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import SearchBar from './SearchBar';
+import SearchButton from './SearchButton';
+import ProfileButton from './ProfileButton';
 
-function Header({ pageTitle }) {
-  const history = useHistory();
-  const [showSearchBar, setShowSearchBar] = useState(false);
+function Header({ pageTitle, showSearchButton }) {
   return (
     <div>
-      <img
-        type="button"
-        data-testid="profile-top-btn"
-        src={ profileIcon }
-        alt="Profile Icon"
-        onClick={ () => history.push('/profile') }
-        aria-hidden="true"
-      />
+      <ProfileButton />
       <h1 data-testid="page-title">{pageTitle}</h1>
-      <img
-        type="button"
-        data-testid="search-top-btn"
-        src={ searchIcon }
-        alt="Search Icon"
-        onClick={ () => setShowSearchBar(!showSearchBar) }
-        aria-hidden="true"
-      />
-      { showSearchBar && <SearchBar />}
+      {
+        !showSearchButton ? <SearchButton /> : null
+      }
       <div />
     </div>
   );
@@ -35,6 +18,7 @@ function Header({ pageTitle }) {
 
 Header.propTypes = {
   pageTitle: PropTypes.string.isRequired,
+  showSearchButton: PropTypes.bool.isRequired,
 };
 
 export default Header;

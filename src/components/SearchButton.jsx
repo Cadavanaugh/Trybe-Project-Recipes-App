@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function SearchButton() {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -13,6 +14,7 @@ function SearchButton() {
         aria-hidden="true"
         onClick={ () => setShowSearchBar(!showSearchBar) }
       />
+      { showSearchBar && <SearchBar />}
     </div>
   );
 }

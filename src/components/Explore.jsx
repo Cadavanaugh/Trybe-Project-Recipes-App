@@ -6,6 +6,7 @@ function Explore() {
     <div>
       <Header
         pageTitle="Explore"
+        showSearchButton
       />
     </div>
   );
