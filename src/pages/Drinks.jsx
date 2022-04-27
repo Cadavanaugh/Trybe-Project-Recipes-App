@@ -3,15 +3,21 @@ import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
-// import './Foods.css';
+import CategoriesButton from '../components/CategoriesButton';
+import '../styles/Foods.css';
 
 function Drinks() {
-  const { drinks } = useContext(RecipesContext);
-  console.log(drinks);
+  const { drinks, drinkCategories } = useContext(RecipesContext);
 
   return (
     <>
       <Header pageTitle="Drinks" />
+      <div>
+        {drinkCategories.map(({ strCategory }, index) => (<CategoriesButton
+          strCategory={ strCategory }
+          key={ index }
+        />))}
+      </div>
       <div className="card-container">
         {drinks.length && drinks
           .map(({ strDrinkThumb, idDrink, strDrink }, index) => (<Card

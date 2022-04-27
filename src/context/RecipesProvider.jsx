@@ -53,6 +53,8 @@ function RecipesProvider({ children }) {
     searchFoods,
     meals,
     drinks,
+    foodCategories,
+    drinkCategories,
   };
 
   return (
