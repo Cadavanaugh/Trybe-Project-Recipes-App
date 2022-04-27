@@ -5,7 +5,7 @@ import LoginContext from './LoginContext';
 function LoginProvider({ children }) {
   return (
     <div>
-      <LoginContext.Provider value={ { algo } }>
+      <LoginContext.Provider>
         { children }
       </LoginContext.Provider>
     </div>
