@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
+import Footer from '../components/Footer';
 
 function Explore() {
   return (
@@ -9,7 +9,7 @@ function Explore() {
         pageTitle="Explore"
         showSearchButton
       />
-      <MenuInferior />
+      <Footer />
     </div>
   );
 }

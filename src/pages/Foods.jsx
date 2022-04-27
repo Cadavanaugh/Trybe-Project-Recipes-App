@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
+import Footer from '../components/Footer';
 
 function Foods() {
   const { meals } = useContext(RecipesContext);
@@ -19,7 +19,7 @@ function Foods() {
           index={ index }
         />))}
       </div>
-      <MenuInferior />
+      <Footer />
     </>
 
   );

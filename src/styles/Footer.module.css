@@ -1,6 +1,8 @@
 .navFooter {
   background-color: rgb(167, 167, 167);
+  bottom: 0;
   padding: 10px 0;
+  position: fixed;
   width: 100%;
 }
 
@@ -12,4 +14,8 @@
   margin: 0 auto;
   padding-inline-start: 0;
   text-align: center;
+}
+
+button {
+  all: unset;
 }
