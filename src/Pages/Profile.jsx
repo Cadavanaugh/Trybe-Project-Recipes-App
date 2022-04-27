@@ -1,8 +1,12 @@
 import React from 'react';
+import MenuInferior from '../components/MenuInferior';
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      Profile
+      <MenuInferior />
+    </div>
   );
 }
 
