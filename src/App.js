@@ -4,16 +4,17 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
 
 function App() {
   return (
     <div className="meals">
       <BrowserRouter>
         <Switch>
-          {/* <Route exact path="/" component={ Login }/> */}
+          {/* <Route exact path="/" component={ Login } /> */}
           <Route exact path="/foods" component={ Foods } />
-          {/* <Route exact path="/drinks" component={ Drinks }/>
-          <Route exact path="/foods/{id-da-receita}" component={ FoodId }/>
+          <Route exact path="/drinks" component={ Drinks } />
+          {/* <Route exact path="/foods/{id-da-receita}" component={ FoodId }/>
           <Route exact path="/drinks/{id-da-receita}" component={ DrinkId } />
           <Route exact path="/foods/{id-da-receita}/in-progress" component={ FoodsInProgress }/>
           <Route exact path="/drinks/{id-da-receita}/in-progress" component={ DrinksInProgress }/>

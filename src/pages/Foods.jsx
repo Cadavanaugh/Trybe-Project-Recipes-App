@@ -4,11 +4,11 @@ import RecipesContext from '../Context/RecipesContext';
 import './Foods.css';
 
 function Foods() {
-  const { foods } = useContext(RecipesContext);
-  console.log(foods);
+  const { meals } = useContext(RecipesContext);
+  console.log(meals);
   return (
     <div className="card-container">
-      {foods.length && foods.map(({ strMealThumb, idMeal, strMeal }, index) => (<Card
+      {meals.length && meals.map(({ strMealThumb, idMeal, strMeal }, index) => (<Card
         key={ idMeal }
         name={ strMeal }
         img={ strMealThumb }

@@ -3,21 +3,22 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 import { fetchFoods, fetchDrinks } from '../services/fetchFoodsAndDrinks';
 
+const splice = 13;
+
 function RecipesProvider({ children }) {
-  const [foods, setFoods] = useState({});
-  const [drinks, setDrinks] = useState({});
+  const [meals, setMeals] = useState([]);
+  const [drinks, setDrinks] = useState([]);
   const [error, setError] = useState({});
-  console.log(foods);
+  console.log(error);
 
   useEffect(() => {
-    fetchFoods(setFoods, setError);
-    fetchDrinks(setDrinks, setError);
+    fetchFoods(setMeals, setError, splice);
+    fetchDrinks(setDrinks, setError, splice);
   }, []);
 
   const context = {
-    foods,
+    meals,
     drinks,
-    error,
   };
 
   return (
