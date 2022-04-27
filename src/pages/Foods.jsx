@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import Card from '../components/Card';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 function Foods() {
   const { meals } = useContext(RecipesContext);
-  console.log(meals);
+  // console.log(meals);
   return (
     <>
       <Header pageTitle="Foods" />

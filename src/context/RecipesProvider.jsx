@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import drinkSearchAPI from '../services/drinkAPI';
+import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
+import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
 import RecipesContext from './RecipesContext';
-import { fetchFoods, fetchDrinks } from '../services/fetchFoodsAndDrinks';
-import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 
 const position = 12;
 const catPosition = 5;
 
 function RecipesProvider({ children }) {
+  const { pathname } = useLocation();
   const [ingredientFood, setIngredientFood] = useState([]);
-  const [radioSearch, setRadioSearch] = useState('ingredient');
+  const [radioSearch, setRadioSearch] = useState('');
+  const [inputSearch, setInputSearch] = useState('');
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [error, setError] = useState({});
@@ -27,32 +31,45 @@ function RecipesProvider({ children }) {
     fetchDrinkCategories(setDrinkCategories, setError, 0, catPosition);
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchFoodIngredient() {
-  //     const data = await foodIngredientApi('');
-  //     setIngredientFood(data.meals);
-  //     console.log((data));
-  //   }
-  //   fetchFoodIngredient();
-  // }, []);
-
-  const valueRadioButton = ({ target }) => {
+  const valueInputsRadios = ({ target }) => {
     setRadioSearch(target.value);
   };
 
+  const valueInputs = ({ target }) => {
+    setInputSearch(target.value);
+  };
+
   const searchFoods = async () => {
-    const data = await foodSearchAPI(radioSearch);
-    setIngredientFood(data.meals);
-    console.log(data);
+    if (radioSearch === 'firstLetter' && inputSearch.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else {
+      const data = await foodSearchAPI(radioSearch, inputSearch);
+      setIngredientFood(data.meals);
+      console.log(data);
+    }
+  };
+
+  const searchDrinks = async () => {
+    if (radioSearch === 'firstLetter' && inputSearch.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else {
+      const data = await drinkSearchAPI(radioSearch, inputSearch);
+      setIngredientFood(data.drinks);
+      console.log(data);
+    }
   };
 
   const store = {
     ingredientFood,
     radioSearch,
-    valueRadioButton,
+    valueInputsRadios,
+    valueInputs,
     searchFoods,
     meals,
     drinks,
+    inputSearch,
+    pathname,
+    searchDrinks,
   };
 
   return (

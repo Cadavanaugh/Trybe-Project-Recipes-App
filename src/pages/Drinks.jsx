@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import Card from '../components/Card';
-import RecipesContext from '../context/RecipesContext';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
+import RecipesContext from '../context/RecipesContext';
 // import './Foods.css';
 
 function Drinks() {
   const { drinks } = useContext(RecipesContext);
-  console.log(drinks);
 
   return (
     <>

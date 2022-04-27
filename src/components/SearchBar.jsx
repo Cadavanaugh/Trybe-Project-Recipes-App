@@ -2,10 +2,24 @@ import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
 export default function SearchBar() {
-  const { radioSearch, valueRadioButton, searchFoods } = useContext(RecipesContext);
+  const { radioSearch,
+    valueInputs,
+    valueInputsRadios,
+    searchFoods,
+    inputSearch,
+    pathname,
+    searchDrinks,
+  } = useContext(RecipesContext);
+  const search = pathname === '/foods' ? searchFoods : searchDrinks;
   return (
     <>
-      <input type="text" data-testid="search-input" />
+      <input
+        type="text"
+        data-testid="search-input"
+        name="inputSearch"
+        value={ inputSearch }
+        onChange={ valueInputs }
+      />
       <label htmlFor="search-ingredient">
         Ingredient
         <input
@@ -15,7 +29,7 @@ export default function SearchBar() {
           data-testid="ingredient-search-radio"
           value="ingredient"
           checked={ radioSearch === 'ingredient' }
-          onChange={ valueRadioButton }
+          onChange={ valueInputsRadios }
         />
       </label>
       <label htmlFor="search-name">
@@ -27,7 +41,7 @@ export default function SearchBar() {
           name="radioSearch"
           value="name"
           checked={ radioSearch === 'name' }
-          onChange={ valueRadioButton }
+          onChange={ valueInputsRadios }
         />
       </label>
       <label htmlFor="search-firstletter">
@@ -39,13 +53,13 @@ export default function SearchBar() {
           name="radioSearch"
           value="firstLetter"
           checked={ radioSearch === 'firstLetter' }
-          onChange={ valueRadioButton }
+          onChange={ valueInputsRadios }
         />
       </label>
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ searchFoods }
+        onClick={ search }
       >
         Busca
       </button>
