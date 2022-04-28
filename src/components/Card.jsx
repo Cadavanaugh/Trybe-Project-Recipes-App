@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function Card({ img, name, index }) {
+function Card({ img, name, index, path }) {
   return (
     <div data-testid={ `${index}-recipe-card` }>
-      <img src={ img } alt={ name } width="100px" data-testid={ `${index}-card-img` } />
+      <Link exact="true" to={ path }>
+        <img
+          src={ img }
+          alt={ name }
+          width="100px"
+          data-testid={ `${index}-card-img` }
+        />
+      </Link>
       <p data-testid={ `${index}-card-name` }>{name}</p>
     </div>
   );

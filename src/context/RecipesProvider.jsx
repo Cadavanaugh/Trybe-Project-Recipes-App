@@ -5,8 +5,6 @@ import RecipesContext from './RecipesContext';
 import { fetchFoods, fetchDrinks } from '../services/fetchFoodsAndDrinks';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 
-const position = 12;
-
 function RecipesProvider({ children }) {
   const [ingredientFood, setIngredientFood] = useState([]);
   const [radioSearch, setRadioSearch] = useState('ingredient');
@@ -15,13 +13,12 @@ function RecipesProvider({ children }) {
   const [error, setError] = useState({});
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
-  console.log(error);
-  console.log(foodCategories);
+  // console.log(foodCategories);
   // console.log(drinkCategories);
 
   useEffect(() => {
-    fetchFoods(setMeals, setError, 0, position);
-    fetchDrinks(setDrinks, setError, 0, position);
+    fetchFoods(setMeals, setError);
+    fetchDrinks(setDrinks, setError);
     fetchFoodCategories(setFoodCategories, setError);
     fetchDrinkCategories(setDrinkCategories, setError);
   }, []);
@@ -54,6 +51,7 @@ function RecipesProvider({ children }) {
     drinks,
     foodCategories,
     drinkCategories,
+    error,
   };
 
   return (

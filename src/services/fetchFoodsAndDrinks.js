@@ -1,15 +1,15 @@
-export const fetchFoods = (succcess, error, startPosition, nPosition) => {
+export const fetchFoods = (succcess, error) => {
   fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
     .then((response) => response.json()
       .then((json) => (response.ok
-        ? succcess(json.meals.splice(startPosition, nPosition)) : error(json))));
+        ? succcess(json.meals) : error(json))));
 };
 
-export const fetchDrinks = (succcess, error, startPosition, nPosition) => {
+export const fetchDrinks = (succcess, error) => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
     .then((response) => response.json()
       .then((json) => (response.ok
-        ? succcess(json.drinks.splice(startPosition, nPosition)) : error(json))));
+        ? succcess(json.drinks) : error(json))));
 };
 
 export const fetchFoodsByCategory = async (category) => {

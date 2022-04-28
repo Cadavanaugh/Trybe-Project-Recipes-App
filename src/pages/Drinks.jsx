@@ -5,7 +5,8 @@ import Header from '../components/Header';
 import '../styles/Foods.css';
 import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
-// import './Foods.css';
+
+const max = 12;
 
 function Drinks() {
   const { drinks, drinkCategories } = useContext(RecipesContext);
@@ -58,13 +59,15 @@ function Drinks() {
       </div>
       <div className="card-container">
         {loading ? <p>Loading...</p>
-          : renderCards.map(({ strDrinkThumb, idDrink, strDrink }, index) => (
-            <Card
-              key={ idDrink }
-              name={ strDrink }
-              img={ strDrinkThumb }
-              index={ index }
-            />))}
+          : renderCards.slice(0, max)
+            .map(({ strDrinkThumb, idDrink, strDrink }, index) => (
+              <Card
+                key={ idDrink }
+                name={ strDrink }
+                img={ strDrinkThumb }
+                index={ index }
+                path={ `/drinks/${idDrink}` }
+              />))}
       </div>
       <Footer />
     </>

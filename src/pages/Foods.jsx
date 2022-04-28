@@ -7,6 +7,8 @@ import Header from '../components/Header';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
 
+const max = 12;
+
 function Foods() {
   const { meals, foodCategories } = useContext(RecipesContext);
   const [categorizedMeals, setCategorizedMeals] = useState([]);
@@ -15,7 +17,7 @@ function Foods() {
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
   const maxCategoriesToShow = 6;
-  // console.log(meals);
+  console.log(meals);
   // console.log(categorizedMeals);
 
   const handleCategoryFilter = async (choosenCategory) => {
@@ -47,7 +49,7 @@ function Foods() {
       <Header pageTitle="Foods" />
       <div>
         {
-          foodCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+          foodCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => (
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -62,12 +64,13 @@ function Foods() {
       <div className="card-container">
         {loading
           ? (<p>Loading...</p>)
-          : renderCards.map(({ strMealThumb, idMeal, strMeal }, index) => (
+          : renderCards.slice(0, max).map(({ strMealThumb, idMeal, strMeal }, index) => (
             <Card
               key={ idMeal }
               name={ strMeal }
               img={ strMealThumb }
               index={ index }
+              path={ `/foods/${idMeal}` }
             />))}
       </div>
       <Footer />
