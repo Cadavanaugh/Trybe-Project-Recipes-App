@@ -14,11 +14,11 @@ function Foods() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  console.log(meals);
-  console.log(categorizedMeals);
+  // console.log(meals);
+  // console.log(categorizedMeals);
 
   const handleCategoryFilter = async (choosenCategory) => {
-    if (choosenCategory === category) {
+    if (choosenCategory === category || choosenCategory === 'All') {
       setIsFilter(false);
     } else {
       setLoading(true);
@@ -39,29 +39,23 @@ function Foods() {
     }
   }, [isFilter, meals, categorizedMeals]);
 
-  console.log(renderCards);
+  // console.log(renderCards);
 
   return (
     <>
       <Header pageTitle="Foods" />
       <div>
-        <button
-          type="button"
-          onClick={ () => setIsFilter(false) }
-          data-testid="All-category-filter"
-        >
-          All
-        </button>
-        {foodCategories.map(({ strCategory }, index) => ( // falha nos testes por causa do delay
-          <button
-            data-testid={ `${strCategory}-category-filter` }
-            type="button"
-            key={ index }
-            onClick={ () => handleCategoryFilter(strCategory) }
-          >
-            {strCategory}
-          </button>
-        ))}
+        { foodCategories.length
+          && foodCategories.map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+            <button
+              data-testid={ `${strCategory}-category-filter` }
+              type="button"
+              key={ index }
+              onClick={ () => handleCategoryFilter(strCategory) }
+            >
+              {strCategory}
+            </button>
+          ))}
       </div>
       <div className="card-container">
         {loading
