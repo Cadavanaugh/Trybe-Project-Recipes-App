@@ -16,20 +16,19 @@
 //   return data;
 // };
 
-const foodSearchAPI = async (value) => {
+const foodSearchAPI = async (valueSearchBar, valueInput) => {
   let url = '';
-  if (value === 'ingredient') {
-    url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${value}`;
+  if (valueSearchBar === 'ingredient') {
+    url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${valueInput}`;
   }
-  if (value === 'name') {
-    url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
+  if (valueSearchBar === 'name') {
+    url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${valueInput}`;
   }
-  if (value === 'firstLetter') {
-    url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
+  if (valueSearchBar === 'firstLetter') {
+    url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${valueInput}`;
   }
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
   return data;
 };
 export default foodSearchAPI;

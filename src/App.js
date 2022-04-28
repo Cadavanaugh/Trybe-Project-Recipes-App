@@ -2,16 +2,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import DrinkId from './pages/DrinkId';
 import Drinks from './pages/Drinks';
-import Explore from './pages/Explore';
-import Foods from './pages/Foods';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import ExploreFoods from './pages/ExploreFoods';
-import ExploreDrinks from './pages/ExploreDrinks';
-import FoodsIngredients from './pages/FoodsIngredients';
 import DrinksIngredients from './pages/DrinksIngredients';
+import Explore from './pages/Explore';
+import ExploreDrinks from './pages/ExploreDrinks';
+import ExploreFoods from './pages/ExploreFoods';
+import FoodId from './pages/FoodId';
+import Foods from './pages/Foods';
+import FoodsIngredients from './pages/FoodsIngredients';
+import Login from './pages/Login';
 import Nationalities from './pages/Nationalities';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -19,10 +21,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />
+        <Route exact path="/foods/:idReceita" component={ FoodId } />
         <Route exact path="/drinks" component={ Drinks } />
-        {/* <Route exact path="/foods/{id-da-receita}" component={ FoodId }/>
-          <Route exact path="/drinks/{id-da-receita}" component={ DrinkId } />
-          <Route exact path="/foods/{id-da-receita}/in-progress" component={ FoodsInProgress }/>
+        <Route exact path="/drinks/:idReceita" component={ DrinkId } />
+        {/* <Route exact path="/foods/{id-da-receita}/in-progress" component={ FoodsInProgress }/>
           <Route
           exact path="/drinks/{id-da-receita}/in-progress"
           component={ DrinksInProgress }/> */}
