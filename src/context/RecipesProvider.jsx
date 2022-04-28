@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
@@ -11,6 +11,7 @@ const position = 12;
 const catPosition = 5;
 
 function RecipesProvider({ children }) {
+  const history = useHistory();
   const { pathname } = useLocation();
   const [ingredientFood, setIngredientFood] = useState([]);
   const [radioSearch, setRadioSearch] = useState('');
@@ -20,6 +21,7 @@ function RecipesProvider({ children }) {
   const [error, setError] = useState({});
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  console.log(ingredientFood);
   console.log(error);
   console.log(foodCategories);
   console.log(drinkCategories);
@@ -43,9 +45,16 @@ function RecipesProvider({ children }) {
     if (radioSearch === 'firstLetter' && inputSearch.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     } else {
-      const data = await foodSearchAPI(radioSearch, inputSearch);
-      setIngredientFood(data.meals);
-      console.log(data);
+      const foods = await foodSearchAPI(radioSearch, inputSearch);
+      if (foods.meals !== null) {
+        if (foods.meals.length === 1) {
+          console.log(foods.meals);
+          history.push(`/foods/${foods.meals[0].idMeal}`);
+        }
+        setIngredientFood(foods.meals.splice(0, position));
+      } else {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
     }
   };
 
@@ -53,9 +62,15 @@ function RecipesProvider({ children }) {
     if (radioSearch === 'firstLetter' && inputSearch.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     } else {
-      const data = await drinkSearchAPI(radioSearch, inputSearch);
-      setIngredientFood(data.drinks);
-      console.log(data);
+      const cocktails = await drinkSearchAPI(radioSearch, inputSearch);
+      if (cocktails.drinks !== null) {
+        if (cocktails.drinks.length === 1) {
+          history.push(`/drinks/${cocktails.drinks[0].idDrink}`);
+        }
+        setIngredientFood(cocktails.drinks.splice(0, position));
+      } else {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
     }
   };
 

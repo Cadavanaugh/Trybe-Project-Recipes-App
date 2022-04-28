@@ -10,7 +10,8 @@ export default function SearchBar() {
     pathname,
     searchDrinks,
   } = useContext(RecipesContext);
-  const search = pathname === '/foods' ? searchFoods : searchDrinks;
+  const search = pathname.includes('/foods') ? searchFoods : searchDrinks;
+
   return (
     <>
       <input

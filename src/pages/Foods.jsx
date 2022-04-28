@@ -6,18 +6,20 @@ import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
 
 function Foods() {
-  const { meals } = useContext(RecipesContext);
-  // console.log(meals);
+  const { meals, ingredientFood } = useContext(RecipesContext);
+  const foodView = ingredientFood.length ? ingredientFood : meals;
   return (
     <>
       <Header pageTitle="Foods" />
       <div className="card-container">
-        {meals.length && meals.map(({ strMealThumb, idMeal, strMeal }, index) => (<Card
-          key={ idMeal }
-          name={ strMeal }
-          img={ strMealThumb }
-          index={ index }
-        />))}
+        {foodView
+          .map(({ strMealThumb, idMeal, strMeal }, index) => (<Card
+            key={ idMeal }
+            name={ strMeal }
+            img={ strMealThumb }
+            index={ index }
+          />))}
+
       </div>
       <Footer />
     </>
