@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
 import '../styles/Foods.css';
 import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
+import Footer from '../components/Footer';
+// import './Foods.css';
 
 function Drinks() {
   const { drinks, drinkCategories } = useContext(RecipesContext);
@@ -45,7 +46,7 @@ function Drinks() {
             index={ index }
           />))}
       </div>
-      <MenuInferior />
+      <Footer />
     </>
 
   );

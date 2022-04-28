@@ -4,8 +4,8 @@ import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
 import Header from '../components/Header';
-import MenuInferior from '../components/MenuInferior';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
+import Footer from '../components/Footer';
 
 function Foods() {
   const { meals, foodCategories } = useContext(RecipesContext);
@@ -68,7 +68,7 @@ function Foods() {
               index={ index }
             />))}
       </div>
-      <MenuInferior />
+      <Footer />
     </>
 
   );

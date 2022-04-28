@@ -1,18 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import SearchButton from './SearchButton';
+import React from 'react';
+import style from '../styles/Header.module.css';
 import ProfileButton from './ProfileButton';
+import SearchButton from './SearchButton';
 
 function Header({ pageTitle, showSearchButton }) {
   return (
-    <div>
+    <header className={ style.header }>
       <ProfileButton />
       <h1 data-testid="page-title">{pageTitle}</h1>
       {
         !showSearchButton ? <SearchButton /> : null
       }
-      <div />
-    </div>
+    </header>
   );
 }
 
