@@ -1,35 +1,87 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+// import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
-import CategoriesButton from '../components/CategoriesButton';
+import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
 
 function Foods() {
   const { meals, foodCategories } = useContext(RecipesContext);
+  const [categorizedMeals, setCategorizedMeals] = useState([]);
+  const [isFilter, setIsFilter] = useState(false);
+  const [renderCards, setRenderCards] = useState([]);
+  const [category, setCategory] = useState('All');
+  const [loading, setLoading] = useState(false);
   console.log(meals);
+  console.log(categorizedMeals);
+
+  const handleCategoryFilter = async (choosenCategory) => {
+    if (choosenCategory === category) {
+      setIsFilter(false);
+    } else {
+      setLoading(true);
+      const filteredFoods = await fetchFoodsByCategory(choosenCategory);
+      setCategorizedMeals(filteredFoods);
+      setIsFilter(true);
+      setCategory(choosenCategory);
+      setLoading(false);
+    }
+  };
+
+  // Usado para decidir o que deve ser renderizado
+  useEffect(() => {
+    if (isFilter) {
+      setRenderCards(categorizedMeals);
+    } else {
+      setRenderCards(meals);
+    }
+  }, [isFilter, meals, categorizedMeals]);
+
+  console.log(renderCards);
+
   return (
     <>
       <Header pageTitle="Foods" />
       <div>
-        {foodCategories.map(({ strCategory }, index) => (<CategoriesButton
-          strCategory={ strCategory }
-          key={ index }
-        />))}
+        <button
+          type="button"
+          onClick={ () => setIsFilter(false) }
+          data-testid="All-category-filter"
+        >
+          All
+        </button>
+        {foodCategories.map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+          <button
+            data-testid={ `${strCategory}-category-filter` }
+            type="button"
+            key={ index }
+            onClick={ () => handleCategoryFilter(strCategory) }
+          >
+            {strCategory}
+          </button>
+        ))}
       </div>
       <div className="card-container">
-        {meals.length && meals.map(({ strMealThumb, idMeal, strMeal }, index) => (<Card
-          key={ idMeal }
-          name={ strMeal }
-          img={ strMealThumb }
-          index={ index }
-        />))}
+        {loading
+          ? (<p>Loading...</p>)
+          : renderCards.map(({ strMealThumb, idMeal, strMeal }, index) => (
+            <Card
+              key={ idMeal }
+              name={ strMeal }
+              img={ strMealThumb }
+              index={ index }
+            />))}
       </div>
       <MenuInferior />
     </>
 
   );
 }
+
+// Foods.propTypes = {
+//   strCategory: PropTypes.string.isRequired,
+// };
 
 export default Foods;
