@@ -14,6 +14,7 @@ function Foods() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
+  const maxCategoriesToShow = 6;
   // console.log(meals);
   // console.log(categorizedMeals);
 
@@ -45,8 +46,8 @@ function Foods() {
     <>
       <Header pageTitle="Foods" />
       <div>
-        { foodCategories.length
-          && foodCategories.map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+        {
+          foodCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => ( // falha nos testes por causa do delay
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -55,7 +56,8 @@ function Foods() {
             >
               {strCategory}
             </button>
-          ))}
+          ))
+        }
       </div>
       <div className="card-container">
         {loading

@@ -6,7 +6,6 @@ import { fetchFoods, fetchDrinks } from '../services/fetchFoodsAndDrinks';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 
 const position = 12;
-const catPosition = 5;
 
 function RecipesProvider({ children }) {
   const [ingredientFood, setIngredientFood] = useState([]);
@@ -23,8 +22,8 @@ function RecipesProvider({ children }) {
   useEffect(() => {
     fetchFoods(setMeals, setError, 0, position);
     fetchDrinks(setDrinks, setError, 0, position);
-    fetchFoodCategories(setFoodCategories, setError, 0, catPosition);
-    fetchDrinkCategories(setDrinkCategories, setError, 0, catPosition);
+    fetchFoodCategories(setFoodCategories, setError);
+    fetchDrinkCategories(setDrinkCategories, setError);
   }, []);
 
   // useEffect(() => {

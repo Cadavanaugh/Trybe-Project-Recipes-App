@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
@@ -9,42 +9,62 @@ import Footer from '../components/Footer';
 
 function Drinks() {
   const { drinks, drinkCategories } = useContext(RecipesContext);
+  const [categorizedDrinks, setCategorizedDrinks] = useState([]);
+  const [isFilter, setIsFilter] = useState(false);
+  const [renderCards, setRenderCards] = useState([]);
+  const [category, setCategory] = useState('All');
+  const [loading, setLoading] = useState(false);
+  const maxCategoriesToShow = 6;
 
-  const handleCategoryFilter = async (category) => {
-    const filteredDrinks = await fetchDrinksByCategory(category);
-    console.log(filteredDrinks);
+  const handleCategoryFilter = async (choosenCategory) => {
+    if (choosenCategory === category || choosenCategory === 'All') {
+      setIsFilter(false);
+    } else {
+      setLoading(true);
+      const filteredDrinks = await fetchDrinksByCategory(choosenCategory);
+      setCategorizedDrinks(filteredDrinks);
+      setIsFilter(true);
+      setCategory(choosenCategory);
+      setLoading(false);
+    }
   };
 
+  // Usado para decidir o que deve ser renderizado
+  useEffect(() => {
+    if (isFilter) {
+      setRenderCards(categorizedDrinks);
+    } else {
+      setRenderCards(drinks);
+    }
+  }, [isFilter, drinks, categorizedDrinks]);
+
+  console.log(renderCards);
   return (
     <>
       <Header pageTitle="Drinks" />
       <div>
-        <button
-          type="button"
-          onClick={ () => setIsFilter(false) }
-          data-testid="All-category-filter"
-        >
-          All
-        </button>
-        {drinkCategories.map(({ strCategory }, index) => (
-          <button
-            data-testid={ `${strCategory}-category-filter` }
-            type="button"
-            key={ index }
-            onClick={ () => handleCategoryFilter(strCategory) }
-          >
-            {strCategory}
-          </button>
-        ))}
+        {
+          drinkCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+            <button
+              data-testid={ `${strCategory}-category-filter` }
+              type="button"
+              key={ index }
+              onClick={ () => handleCategoryFilter(strCategory) }
+            >
+              {strCategory}
+            </button>
+          ))
+        }
       </div>
       <div className="card-container">
-        {drinks.length && drinks
-          .map(({ strDrinkThumb, idDrink, strDrink }, index) => (<Card
-            key={ idDrink }
-            name={ strDrink }
-            img={ strDrinkThumb }
-            index={ index }
-          />))}
+        {loading ? <p>Loading...</p>
+          : renderCards.map(({ strDrinkThumb, idDrink, strDrink }, index) => (
+            <Card
+              key={ idDrink }
+              name={ strDrink }
+              img={ strDrinkThumb }
+              index={ index }
+            />))}
       </div>
       <Footer />
     </>
