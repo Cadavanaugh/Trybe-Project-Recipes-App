@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import Card from '../components/Card';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/Foods.css';
-import Header from '../components/Header';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
-import Footer from '../components/Footer';
 
 const max = 12;
 
