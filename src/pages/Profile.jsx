@@ -6,12 +6,12 @@ import Footer from '../components/Footer';
 function Profile() {
   const history = useHistory();
 
-  const handleClickProfle = () => {
+  const handleClickProfile = () => {
     localStorage.clear();
     history.push('/');
   };
 
-  const um = -1;
+  const menosum = -1;
   return (
     <>
       <Header pageTitle="Profile" />
@@ -19,7 +19,7 @@ function Profile() {
         <h2
           data-testid="profile-email"
         >
-          {(localStorage.getItem('user')).split('"').slice(1, um).pop('l')}
+          {(localStorage.getItem('user')).split('"').slice(1, menosum).pop('l')}
         </h2>
         <button
           data-testid="profile-done-btn"
@@ -38,7 +38,7 @@ function Profile() {
         <button
           data-testid="profile-logout-btn"
           type="submit"
-          onClick={ () => handleClickProfle() }
+          onClick={ () => handleClickProfile() }
         >
           Logout
         </button>
