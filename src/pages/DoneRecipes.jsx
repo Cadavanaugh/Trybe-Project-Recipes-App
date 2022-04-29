@@ -7,7 +7,7 @@ function DoneRecipes() {
   const history = useHistory();
   return (
     <>
-      <Header pageTitle="Done Recipes" />
+      <Header pageTitle="Done Recipes" showSearchButton />
       <div>
         <button
           data-testid="filter-by-all-btn"

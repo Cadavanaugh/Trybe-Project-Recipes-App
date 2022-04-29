@@ -4,23 +4,25 @@ import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
-import '../styles/Foods.css';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
+import '../styles/Foods.css';
 
 const max = 12;
+const maxCategoriesToShow = 6;
 
 function Foods() {
-  const { meals, foodCategories } = useContext(RecipesContext);
+  const { meals, foodCategories,
+    ingredientFood, setIngredientFood } = useContext(RecipesContext);
   const [categorizedMeals, setCategorizedMeals] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  const maxCategoriesToShow = 6;
-  console.log(meals);
-  // console.log(categorizedMeals);
+  // console.log(meals);
+  console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
+    setIngredientFood([]);
     if (choosenCategory === category || choosenCategory === 'All') {
       setIsFilter(false);
     } else {
@@ -35,15 +37,16 @@ function Foods() {
 
   // Usado para decidir o que deve ser renderizado
   useEffect(() => {
-    if (isFilter) {
+    if (ingredientFood.length) {
+      setRenderCards(ingredientFood);
+    } else if (isFilter) {
       setRenderCards(categorizedMeals);
     } else {
       setRenderCards(meals);
     }
-  }, [isFilter, meals, categorizedMeals]);
+  }, [isFilter, meals, categorizedMeals, ingredientFood]);
 
   // console.log(renderCards);
-
   return (
     <>
       <Header pageTitle="Foods" />
@@ -72,6 +75,7 @@ function Foods() {
               index={ index }
               path={ `/foods/${idMeal}` }
             />))}
+
       </div>
       <Footer />
     </>

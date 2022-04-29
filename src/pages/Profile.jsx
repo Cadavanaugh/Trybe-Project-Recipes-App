@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 function Profile() {
   const history = useHistory();
@@ -11,15 +11,17 @@ function Profile() {
     history.push('/');
   };
 
-  const menosum = -1;
+  const getEmail = JSON.parse(localStorage.getItem('user'));
+  console.log(getEmail);
+
   return (
     <>
-      <Header pageTitle="Profile" />
+      <Header pageTitle="Profile" showSearchButton />
       <div>
         <h2
           data-testid="profile-email"
         >
-          {(localStorage.getItem('user')).split('"').slice(1, menosum).pop('l')}
+          {getEmail?.email}
         </h2>
         <button
           data-testid="profile-done-btn"

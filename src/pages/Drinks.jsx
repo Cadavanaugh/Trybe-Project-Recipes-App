@@ -7,17 +7,20 @@ import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
 
 const max = 12;
+const maxCategoriesToShow = 6;
 
 function Drinks() {
-  const { drinks, drinkCategories } = useContext(RecipesContext);
+  const { drinks, drinkCategories,
+    ingredientFood, setIngredientFood } = useContext(RecipesContext);
   const [categorizedDrinks, setCategorizedDrinks] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  const maxCategoriesToShow = 6;
+  console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
+    setIngredientFood([]);
     if (choosenCategory === category || choosenCategory === 'All') {
       setIsFilter(false);
     } else {
@@ -32,12 +35,14 @@ function Drinks() {
 
   // Usado para decidir o que deve ser renderizado
   useEffect(() => {
-    if (isFilter) {
+    if (ingredientFood.length) {
+      setRenderCards(ingredientFood);
+    } else if (isFilter) {
       setRenderCards(categorizedDrinks);
     } else {
       setRenderCards(drinks);
     }
-  }, [isFilter, drinks, categorizedDrinks]);
+  }, [isFilter, drinks, categorizedDrinks, ingredientFood]);
 
   console.log(renderCards);
   return (

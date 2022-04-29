@@ -4,7 +4,7 @@ import Header from '../components/Header';
 function FavoriteRecipes() {
   return (
     <>
-      <Header pageTitle="Favorite Recipes" />
+      <Header pageTitle="Favorite Recipes" showSearchButton />
       <div>
         <button
           data-testid="filter-by-all-btn"
