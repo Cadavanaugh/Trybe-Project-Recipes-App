@@ -5,7 +5,7 @@ import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import style from '../styles/Footer.module.css';
 
-export default function MenuInferior() {
+export default function Footer() {
   const history = useHistory();
 
   return (

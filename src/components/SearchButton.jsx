@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import RecipesContext from '../context/RecipesContext';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
 function SearchButton() {
+  const { setIngredientFood } = useContext(RecipesContext);
   const [showSearchBar, setShowSearchBar] = useState(false);
   return (
     <div>
@@ -12,7 +14,10 @@ function SearchButton() {
         src={ searchIcon }
         alt="Search Icon"
         aria-hidden="true"
-        onClick={ () => setShowSearchBar(!showSearchBar) }
+        onClick={ () => {
+          setShowSearchBar(!showSearchBar);
+          setIngredientFood([]);
+        } }
       />
       { showSearchBar && <SearchBar />}
     </div>
