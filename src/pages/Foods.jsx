@@ -73,7 +73,7 @@ function Foods() {
               name={ strMeal }
               img={ strMealThumb }
               index={ index }
-              path={ `/foods/${idMeal}` }
+              path={ `/foods/${idMeal}/in-progress` }
             />))}
 
       </div>

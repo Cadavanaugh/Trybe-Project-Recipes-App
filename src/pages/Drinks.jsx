@@ -71,7 +71,7 @@ function Drinks() {
                 name={ strDrink }
                 img={ strDrinkThumb }
                 index={ index }
-                path={ `/drinks/${idDrink}` }
+                path={ `/drinks/${idDrink}/in-progress` }
               />))}
       </div>
       <Footer />
