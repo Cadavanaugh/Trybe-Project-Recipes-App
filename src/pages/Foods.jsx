@@ -70,6 +70,7 @@ function Foods() {
               img={ strMealThumb }
               index={ index }
               path={ `/foods/${idMeal}` }
+              testIDCard="recipe"
             />))}
 
       </div>
