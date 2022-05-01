@@ -5,19 +5,23 @@ import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
-import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 
 const trintaDois = 32;
 const quarentaTres = 43;
 
-function FoodId() {
-  const { setError } = useContext(RecipesContext);
+function RecipeDetails() {
+  const { setError, pathname } = useContext(RecipesContext);
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
+  const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
+  const foodsPath = pathname.includes('/foods');
   console.log(recipe);
 
   useEffect(() => {
-    fetchFoodRecipe(idReceita, setRecipe, setError);
+    if (foodsPath) {
+      fetchFoodRecipe(idReceita, setRecipe, setError);
+    } else fetchDrinkRecipe(idReceita, setRecipe, setError);
   }, []);
 
   return (
@@ -26,27 +30,29 @@ function FoodId() {
         recipe.length && (
           <>
             <img
-              src={ recipe[0].strMealThumb }
+              src={ recipe[0][`str${key}Thumb`] }
               data-testid="recipe-photo"
               alt="algo"
               width="200px"
             />
             <section>
-              <h1 data-testid="recipe-title">{recipe[0].strMeal}</h1>
+              <h1 data-testid="recipe-title">{recipe[0][`str${key}`]}</h1>
               <button type="button">
                 <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
               </button>
               <FavoriteButton recipe={ recipe } />
             </section>
-            <h3 data-testid="recipe-category">{recipe[0].strCategory}</h3>
+            <h3 data-testid="recipe-category">
+              {foodsPath ? recipe[0].strCategory : recipe[0].strAlcoholic}
+            </h3>
             <Ingredients recipe={ recipe } />
             <section data-testid="instructions">
               <h4>Instructions</h4>
               <p>{recipe[0].strInstructions}</p>
             </section>
-            <Video
+            {foodsPath && <Video
               embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
-            />
+            />}
             <div data-testid={ `${0}-recomendation-card` } />
             <button data-testid="start-recipe-btn" type="button">Start Recipe</button>
 
@@ -56,4 +62,4 @@ function FoodId() {
   );
 }
 
-export default FoodId;
+export default RecipeDetails;

@@ -21,4 +21,4 @@ Video.propTypes = {
 
 export default Video;
 
-// Fonte deste código: https://dev.to/bravemaster619/simplest-way-to-embed-a-youtube-video-in-your-react-app-3bk2
+// Fonte do código: https://dev.to/bravemaster619/simplest-way-to-embed-a-youtube-video-in-your-react-app-3bk2

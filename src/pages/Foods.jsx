@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -18,8 +17,6 @@ function Foods() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  // console.log(meals);
-  console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
     setIngredientFood([]);
@@ -46,7 +43,6 @@ function Foods() {
     }
   }, [isFilter, meals, categorizedMeals, ingredientFood]);
 
-  // console.log(renderCards);
   return (
     <>
       <Header pageTitle="Foods" />
@@ -82,9 +78,5 @@ function Foods() {
 
   );
 }
-
-// Foods.propTypes = {
-//   strCategory: PropTypes.string.isRequired,
-// };
 
 export default Foods;

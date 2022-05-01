@@ -34,3 +34,12 @@ export const fetchFoodRecipe = (id, succcess, fail) => {
       .then((json) => (response.ok
         ? succcess(json.meals) : fail(json))));
 };
+
+export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+    .then((response) => response.json()
+      .then((json) => (response.ok
+        ? succcess(json.drinks) : failDrink(json))));
+};
+
+// www.thecocktaildb.com/api/json/v1/1/filter.php?c=
