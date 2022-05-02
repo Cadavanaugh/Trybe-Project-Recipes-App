@@ -5,9 +5,7 @@ import Header from '../components/Header';
 import '../styles/Foods.css';
 import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
-
-const max = 12;
-const maxCategoriesToShow = 6;
+import { doze, seis } from '../services/variables';
 
 function Drinks() {
   const { drinks, drinkCategories,
@@ -48,7 +46,7 @@ function Drinks() {
       <Header pageTitle="Drinks" />
       <div>
         {
-          drinkCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => (
+          drinkCategories.slice(0, seis).map(({ strCategory }, index) => (
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -62,7 +60,7 @@ function Drinks() {
       </div>
       <div className="card-container">
         {loading ? <p>Loading...</p>
-          : renderCards.slice(0, max)
+          : renderCards.slice(0, doze)
             .map(({ strDrinkThumb, idDrink, strDrink }, index) => (
               <Card
                 key={ idDrink }

@@ -12,10 +12,7 @@ import Card from '../components/Card';
 import style from '../styles/RecipeDetails.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-const trintaDois = 32;
-const quarentaTres = 43;
-const seis = 6;
+import { quarentaTres, seis, trintaDois } from '../services/variables';
 
 function RecipeDetails() {
   const { setError, meals, drinks } = useContext(RecipesContext);
