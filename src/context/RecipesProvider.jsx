@@ -41,7 +41,6 @@ function RecipesProvider({ children }) {
       const foods = await foodSearchAPI(radioSearch, inputSearch);
       if (foods.meals !== null) {
         if (foods.meals.length === 1) {
-          console.log(foods.meals);
           history.push(`/foods/${foods.meals[0].idMeal}`);
         }
         setIngredientFood(foods.meals/* .splice(0, position) */);

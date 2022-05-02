@@ -18,8 +18,8 @@ function Foods() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  // console.log(meals);
-  console.log(ingredientFood);
+  console.log(meals);
+  // console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
     setIngredientFood([]);
