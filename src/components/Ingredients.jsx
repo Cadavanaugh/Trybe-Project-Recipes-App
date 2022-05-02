@@ -12,7 +12,7 @@ export default function Ingredients({ recipe }) {
   const measuresList = Object.entries(recipe[0])
     .filter((item) => item[0].includes('strMeasure') && item[1] !== emptyIngredient2);
   console.log(measuresList);
-  // Aqui causa bug na 32 pq há ingredientes sem medidas em bebidas
+
   const renderIngredients = ingredientsList.reduce((acc, cur, idx) => {
     while (ingredientsList.length >= measuresList.length) {
       measuresList.push(['', '']);
