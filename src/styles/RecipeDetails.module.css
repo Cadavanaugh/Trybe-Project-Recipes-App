@@ -3,6 +3,10 @@
   position: fixed;
 }
 
+.slick img {
+  width: 80%;
+}
+
 /* .carrousel {
   align-items: center;
   display: flex;

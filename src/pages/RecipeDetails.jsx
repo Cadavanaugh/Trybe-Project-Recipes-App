@@ -76,7 +76,7 @@ function RecipeDetails() {
 
             <section>
               <h3>Recommended</h3>
-              <Slider { ...settings }>
+              <Slider { ...settings } className={ style.slick }>
                 {
                   recommended.slice(0, seis)
                     .map((item, index) => (
