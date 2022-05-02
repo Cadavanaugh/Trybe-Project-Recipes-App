@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import Slider from 'react-slick';
 import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
@@ -8,7 +9,9 @@ import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
 import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import Card from '../components/Card';
-import '../styles/RecipeDetails.css';
+import style from '../styles/RecipeDetails.module.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const trintaDois = 32;
 const quarentaTres = 43;
@@ -20,9 +23,16 @@ function RecipeDetails() {
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
+  const keyRecommended = pathname.includes('/foods') ? 'Drink' : 'Meal';
   const foodsPath = pathname.includes('/foods');
-  const recommended = foodsPath ? meals : drinks;
-  console.log(recommended);
+  const recommended = foodsPath ? drinks : meals;
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  };
 
   useEffect(() => {
     if (foodsPath) {
@@ -66,25 +76,29 @@ function RecipeDetails() {
 
             <section>
               <h3>Recommended</h3>
-              {
-                recommended.slice(0, seis)
-                  .map((item, index) => (
-                    <Card
-                      key={ item[`id${key}`] }
-                      name={ item[`str${key}`] }
-                      img={ item[`str${key}Thumb`] }
-                      index={ index }
-                      path={ foodsPath
-                        ? `/foods/${item[`id${key}`]}` : `/drinks/${item[`id${key}`]}` }
-                      testIDCard="recomendation"
-                      testIDTitle="recomendation-title"
-                    />
-                  ))
-              }
+              <Slider { ...settings }>
+                {
+                  recommended.slice(0, seis)
+                    .map((item, index) => (
+                      <Card
+                        key={ item[`id${keyRecommended}`] }
+                        name={ item[`str${keyRecommended}`] }
+                        img={ item[`str${keyRecommended}Thumb`] }
+                        index={ index }
+                        path={ foodsPath
+                          ? `/foods/${item[`id${keyRecommended}`]}`
+                          : `/drinks/${item[`id${keyRecommended}`]}` }
+                        testIDCard="recomendation"
+                        testIDTitle="recomendation-title"
+                      />
+                    ))
+                }
+              </Slider>
+
             </section>
 
             <button
-              className="fixed-button "
+              className={ style.fixedButton }
               data-testid="start-recipe-btn"
               type="button"
             >
