@@ -5,6 +5,7 @@ import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
+import fetchIngredients from '../services/ingredientsAPI';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
@@ -18,12 +19,14 @@ function RecipesProvider({ children }) {
   const [error, setError] = useState({});
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const [favoriteFoods, setFavoriteFoods] = useState([]);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);
     fetchDrinks(setDrinks, setError);
     fetchFoodCategories(setFoodCategories, setError);
     fetchDrinkCategories(setDrinkCategories, setError);
+    fetchIngredients();
   }, []);
 
   const valueInputsRadios = ({ target }) => {
@@ -81,6 +84,8 @@ function RecipesProvider({ children }) {
     pathname,
     searchDrinks,
     setIngredientFood,
+    favoriteFoods,
+    setFavoriteFoods,
   };
 
   return (
