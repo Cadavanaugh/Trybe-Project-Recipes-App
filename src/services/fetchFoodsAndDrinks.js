@@ -27,3 +27,9 @@ export const fetchDrinksByCategory = async (category) => {
   const limit = data.drinks.splice(0, max);
   return limit;
 };
+
+export const fetchDrinkById = async (drinkId) => {
+  const result = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?${drinkId}`);
+  const data = await result.json();
+  return data;
+};
