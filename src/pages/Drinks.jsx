@@ -71,6 +71,7 @@ function Drinks() {
                 index={ index }
                 path={ `/drinks/${idDrink}` }
                 testIDCard="recipe"
+                testIDTitle="card-name"
               />))}
       </div>
       <Footer />

@@ -7,18 +7,22 @@ import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
 import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import Card from '../components/Card';
+import '../styles/RecipeDetails.css';
 
 const trintaDois = 32;
 const quarentaTres = 43;
+const seis = 6;
 
 function RecipeDetails() {
-  const { setError } = useContext(RecipesContext);
+  const { setError, meals, drinks } = useContext(RecipesContext);
   const { pathname } = useLocation();
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
   const foodsPath = pathname.includes('/foods');
-  console.log(recipe);
+  const recommended = foodsPath ? meals : drinks;
+  console.log(recommended);
 
   useEffect(() => {
     if (foodsPath) {
@@ -59,8 +63,34 @@ function RecipeDetails() {
             {foodsPath && <Video
               embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
             />}
-            <div data-testid={ `${0}-recomendation-card` } />
-            <button data-testid="start-recipe-btn" type="button">Start Recipe</button>
+
+            <section>
+              <h3>Recommended</h3>
+              {
+                recommended.slice(0, seis)
+                  .map((item, index) => (
+                    <Card
+                      key={ item[`id${key}`] }
+                      name={ item[`str${key}`] }
+                      img={ item[`str${key}Thumb`] }
+                      index={ index }
+                      path={ foodsPath
+                        ? `/foods/${item[`id${key}`]}` : `/drinks/${item[`id${key}`]}` }
+                      testIDCard="recomendation"
+                      testIDTitle="recomendation-title"
+                    />
+                  ))
+              }
+            </section>
+
+            <button
+              className="fixed-button "
+              data-testid="start-recipe-btn"
+              type="button"
+            >
+              Start Recipe
+
+            </button>
 
           </>)
       }
