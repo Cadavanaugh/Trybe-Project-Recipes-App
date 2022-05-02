@@ -17,7 +17,6 @@ function Drinks() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
     setIngredientFood([]);
@@ -44,13 +43,12 @@ function Drinks() {
     }
   }, [isFilter, drinks, categorizedDrinks, ingredientFood]);
 
-  console.log(renderCards);
   return (
     <>
       <Header pageTitle="Drinks" />
       <div>
         {
-          drinkCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+          drinkCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => (
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -73,6 +71,7 @@ function Drinks() {
                 index={ index }
                 path={ `/drinks/${idDrink}` }
                 testIDCard="recipe"
+                testIDTitle="card-name"
               />))}
       </div>
       <Footer />

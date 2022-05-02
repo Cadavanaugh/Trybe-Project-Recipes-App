@@ -71,6 +71,7 @@ function Foods() {
               index={ index }
               path={ `/foods/${idMeal}` }
               testIDCard="recipe"
+              testIDTitle="card-name"
             />))}
 
       </div>

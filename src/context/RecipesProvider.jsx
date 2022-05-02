@@ -5,7 +5,6 @@ import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
 import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
-import fetchIngredients from '../services/ingredientsAPI';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
@@ -26,7 +25,6 @@ function RecipesProvider({ children }) {
     fetchDrinks(setDrinks, setError);
     fetchFoodCategories(setFoodCategories, setError);
     fetchDrinkCategories(setDrinkCategories, setError);
-    fetchIngredients();
   }, []);
 
   const valueInputsRadios = ({ target }) => {
