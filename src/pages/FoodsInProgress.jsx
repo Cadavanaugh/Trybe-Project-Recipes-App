@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
@@ -7,6 +7,7 @@ import shareIcon from '../images/shareIcon.svg';
 import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 
 function FoodsInProgress() {
+  const history = useHistory();
   const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
@@ -43,6 +44,8 @@ function FoodsInProgress() {
           <button
             type="button"
             data-testid="finish-recipe-btn"
+            // disabled={ disabledBtn }
+            onClick={ () => history.push('/done-recipes') }
           >
             Finish Recipe
           </button>
