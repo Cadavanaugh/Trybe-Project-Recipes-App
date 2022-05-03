@@ -15,7 +15,7 @@ function RecipeButton({ foodsPath, idReceita }) {
       if (inProgress) setButtonName('Continue Recipe');
     }
   };
-  console.log(history);
+
   useEffect(() => {
     getInProgressRecipes();
   }, []);

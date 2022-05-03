@@ -53,7 +53,7 @@ function RecipeDetails() {
             <section>
               <h1 data-testid="recipe-title">{recipe[0][`str${key}`]}</h1>
               <ShareButton />
-              <FavoriteButton recipe={ recipe } />
+              <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
             </section>
 
             <h3 data-testid="recipe-category">
