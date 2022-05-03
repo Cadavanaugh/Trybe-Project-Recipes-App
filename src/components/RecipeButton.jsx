@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 import style from '../styles/RecipeDetails.module.css';
 
 function RecipeButton({ foodsPath, idReceita }) {
   const [buttonName, setButtonName] = useState('Start Recipe');
   const recipeType = foodsPath ? 'meals' : 'cocktails';
-  // const idType = foodsPath ? 'id-da-comida' : 'id-da-bebida';
+  const history = useHistory();
 
   const getInProgressRecipes = () => {
     if (localStorage.inProgressRecipes !== undefined) {
@@ -14,7 +15,7 @@ function RecipeButton({ foodsPath, idReceita }) {
       if (inProgress) setButtonName('Continue Recipe');
     }
   };
-
+  console.log(history);
   useEffect(() => {
     getInProgressRecipes();
   }, []);
@@ -24,6 +25,9 @@ function RecipeButton({ foodsPath, idReceita }) {
       className={ style.fixedButton }
       data-testid="start-recipe-btn"
       type="button"
+      onClick={ () => (foodsPath
+        ? history.push(`/foods/${idReceita}/in-progress`)
+        : history.push(`/drinks/${idReceita}/in-progress`)) }
     >
       {buttonName}
     </button>

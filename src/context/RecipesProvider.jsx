@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
-import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
+import { fetchDrinks, fetchFoods,
+} from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
 import RecipesContext from './RecipesContext';
 
@@ -42,7 +43,6 @@ function RecipesProvider({ children }) {
       const foods = await foodSearchAPI(radioSearch, inputSearch);
       if (foods.meals !== null) {
         if (foods.meals.length === 1) {
-          console.log(foods.meals);
           history.push(`/foods/${foods.meals[0].idMeal}`);
         }
         setIngredientFood(foods.meals/* .splice(0, position) */);

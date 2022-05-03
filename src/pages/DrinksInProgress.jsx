@@ -1,27 +1,28 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
-import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import { fetchDrinkRecipe } from '../services/fetchFoodsAndDrinks';
 
-function FoodsInProgress() {
+function DrinksInProgress() {
   const history = useHistory();
   const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
 
   useEffect(() => {
-    fetchFoodRecipe(idReceita, setRecipe, setError);
+    fetchDrinkRecipe(idReceita, setRecipe, setError);
   }, [idReceita, setError]);
 
   return (
     <div>
-      {recipe.length > 0 && (
+      {recipe.length && (
+
         <>
           <img
-            src={ recipe[0].strMealThumb }
+            src={ recipe[0].strDrinkThumb }
             data-testid="recipe-photo"
             alt="algo"
             width="200px"
@@ -29,13 +30,13 @@ function FoodsInProgress() {
           <h2
             data-testid="recipe-title"
           >
-            {recipe[0].strMeal}
+            {recipe[0].strDrink}
           </h2>
           <button type="button">
             <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
           </button>
           <FavoriteButton recipe={ recipe } />
-          <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
+          <p data-testid="recipe-category">{ recipe[0].strAlcoholic }</p>
           <IngredientsInProgress recipe={ recipe } />
           <section data-testid="instructions">
             <h4>Instructions</h4>
@@ -49,10 +50,11 @@ function FoodsInProgress() {
           >
             Finish Recipe
           </button>
-        </>)}
+        </>
+      )}
 
     </div>
   );
 }
 
-export default FoodsInProgress;
+export default DrinksInProgress;
