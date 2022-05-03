@@ -4,10 +4,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
+import { doze, seis } from '../services/variables';
 import '../styles/Foods.css';
-
-const max = 12;
-const maxCategoriesToShow = 6;
 
 function Foods() {
   const { meals, foodCategories,
@@ -48,7 +46,7 @@ function Foods() {
       <Header pageTitle="Foods" />
       <div>
         {
-          foodCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => (
+          foodCategories.slice(0, seis).map(({ strCategory }, index) => (
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -63,7 +61,7 @@ function Foods() {
       <div className="card-container">
         {loading
           ? (<p>Loading...</p>)
-          : renderCards.slice(0, max).map(({ strMealThumb, idMeal, strMeal }, index) => (
+          : renderCards.slice(0, doze).map(({ strMealThumb, idMeal, strMeal }, index) => (
             <Card
               key={ idMeal }
               name={ strMeal }
@@ -71,6 +69,7 @@ function Foods() {
               index={ index }
               path={ `/foods/${idMeal}` }
               testIDCard="recipe"
+              testIDTitle="card-name"
             />))}
 
       </div>

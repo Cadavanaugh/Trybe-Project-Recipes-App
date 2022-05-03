@@ -28,6 +28,11 @@ export const fetchDrinksByCategory = async (category) => {
   return limit;
 };
 
+export const fetchDrinkById = async (drinkId) => {
+  const result = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?${drinkId}`);
+  const data = await result.json();
+  return data;
+};
 export const fetchFoodRecipe = (id, succcess, fail) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => response.json()

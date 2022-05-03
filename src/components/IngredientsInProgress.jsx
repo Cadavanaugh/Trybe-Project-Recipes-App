@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
-export default function Ingredients({ recipe }) {
+export default function IngredientsInProgress({ recipe }) {
   const { pathname } = useContext(RecipesContext);
   const emptyIngredient = pathname.includes('/foods') ? '' : null;
   const emptyIngredient2 = pathname.includes('/foods') ? ' ' : null;
@@ -23,19 +23,27 @@ export default function Ingredients({ recipe }) {
   return (
     <div className="ingredients-container">
       <h3>Ingredients</h3>
-      {renderIngredients.map((ingredient, index) => (
-        <p
-          key={ index }
-          data-testid={ `${index}-ingredient-name-and-measure` }
-        >
-          {`-${ingredient[0]} - ${ingredient[1]}`}
-
-        </p>
-      ))}
+      {renderIngredients.filter(([ingredient]) => ingredient)
+        .map((ingredient, index) => (
+          <>
+            <label
+              key={ index }
+              htmlFor={ `ingredient-${index}` }
+              data-testid={ `${index}-ingredient-step` }
+            >
+              <input
+                type="checkbox"
+                id={ `ingredient-${index}` }
+              />
+              {`-${ingredient[0]} - ${ingredient[1]}`}
+            </label>
+            <br />
+          </>
+        ))}
     </div>
   );
 }
 
-Ingredients.propTypes = {
+IngredientsInProgress.propTypes = {
   recipe: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
