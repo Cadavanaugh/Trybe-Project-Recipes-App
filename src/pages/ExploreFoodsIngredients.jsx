@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { Card } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -21,7 +22,7 @@ function ExploreFoodsIngredients() {
         console.log(response);
       });
   }, []);
-
+  const path = '/recipes-by-ingredient';
   const maxIngToShow = 12;
   const imgAPI = 'https://www.themealdb.com/images/ingredients';
   return (
@@ -35,14 +36,14 @@ function ExploreFoodsIngredients() {
                 key={ index }
                 data-testid={ `${index}-ingredient-card` }
               >
-                {/* <Link exact="true" to={ path }> */}
-                <img
-                  src={ `${imgAPI}/${ingredient.strIngredient}-Small.png` }
-                  alt={ ingredient.strIngredient }
-                  width="100px"
-                  data-testid={ `${index}-card-img` }
-                />
-                {/* </Link> */}
+                <Link exact="true" to={ path }>
+                  <img
+                    src={ `${imgAPI}/${ingredient.strIngredient}-Small.png` }
+                    alt={ ingredient.strIngredient }
+                    width="100px"
+                    data-testid={ `${index}-card-img` }
+                  />
+                </Link>
                 <p
                   data-testid={ `${index}-card-name` }
                 >

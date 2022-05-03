@@ -14,6 +14,7 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeDetails from './pages/RecipeDetails';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
+import RecipesByIngredient from './pages/RecipesByIngredient';
 // import RandomFoodPage from './pages/RandomFoodPage';
 // import RandomDrink from './pages/RandomDrink';
 
@@ -41,6 +42,7 @@ function App() {
         <Route exact path="/explore" component={ Explore } />
         <Route exact path="/explore/foods" component={ ExploreFoods } />
         <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+        <Route exact path="/recipes-by-ingredient" component={ RecipesByIngredient } />
         <Route
           exact
           path="/explore/foods/ingredients"

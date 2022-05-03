@@ -6,6 +6,9 @@ import RecipesContext from '../context/RecipesContext';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
 import '../styles/Foods.css';
 
+// ajustar como atualizar meals
+// rodar o fetch so quando o meals for vazio
+
 const max = 12;
 const maxCategoriesToShow = 6;
 
