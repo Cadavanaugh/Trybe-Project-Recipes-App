@@ -3,6 +3,7 @@ import FavoriteCard from '../components/FavoriteCard';
 import Header from '../components/Header';
 
 function FavoriteRecipes() {
+  if (!localStorage.favoriteRecipes) localStorage.favoriteRecipes = '[]';
   const localStored = JSON.parse(localStorage.favoriteRecipes);
   const [favs, setFavs] = useState(localStored);
 
