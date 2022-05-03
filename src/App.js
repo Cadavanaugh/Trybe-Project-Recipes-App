@@ -1,23 +1,21 @@
-// import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import DrinkId from './pages/DrinkId';
+import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
 import DrinksIngredients from './pages/DrinksIngredients';
+import DrinksInProgress from './pages/DrinksInProgress';
 import Explore from './pages/Explore';
 import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreFoods from './pages/ExploreFoods';
-import FoodId from './pages/FoodId';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import FoodsIngredients from './pages/FoodsIngredients';
+import FoodsInProgress from './pages/FoodsInProgress';
 import Login from './pages/Login';
 import Nationalities from './pages/Nationalities';
 import Profile from './pages/Profile';
-import DoneRecipes from './pages/DoneRecipes';
-import FavoriteRecipes from './pages/FavoriteRecipes';
-import FoodsInProgress from './pages/FoodsInProgress';
-import DrinksInProgress from './pages/DrinksInProgress';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
@@ -25,10 +23,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />
-        <Route exact path="/foods/:idReceita" component={ FoodId } />
+        <Route exact path="/foods/:idReceita" component={ RecipeDetails } />
         <Route exact path="/drinks" component={ Drinks } />
-        <Route exact path="/foods:id" component={ FoodId } />
-        <Route exact path="/drinks:id" component={ DrinkId } />
+        <Route exact path="/drinks/:idReceita" component={ RecipeDetails } />
         <Route
           exact
           path="/foods/:idReceita/in-progress"
