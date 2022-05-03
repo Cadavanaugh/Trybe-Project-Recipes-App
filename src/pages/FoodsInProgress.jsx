@@ -16,6 +16,10 @@ function FoodsInProgress() {
     fetchFoodRecipe(idReceita, setRecipe, setError);
   }, [idReceita, setError]);
 
+  const handleClickDone = () => {
+    history.push('/done-recipes');
+  };
+
   return (
     <div>
       {recipe.length > 0 && (
@@ -45,7 +49,7 @@ function FoodsInProgress() {
             type="button"
             data-testid="finish-recipe-btn"
             // disabled={ disabledBtn }
-            onClick={ () => history.push('/done-recipes') }
+            onClick={ () => handleClickDone }
           >
             Finish Recipe
           </button>

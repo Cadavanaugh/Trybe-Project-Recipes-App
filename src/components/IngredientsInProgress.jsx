@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
 export default function IngredientsInProgress({ recipe }) {
   const { pathname } = useContext(RecipesContext);
+  const [isCheck, setIsCheck] = useState(false);
   const emptyIngredient = pathname.includes('/foods') ? '' : null;
   const emptyIngredient2 = pathname.includes('/foods') ? ' ' : null;
 
@@ -20,6 +21,10 @@ export default function IngredientsInProgress({ recipe }) {
     return acc;
   }, []);
 
+  const handleChange = ({ target }) => {
+    setIsCheck({ ...isCheck, [target.name]: target.checked });
+  };
+
   return (
     <div className="ingredients-container">
       <h3>Ingredients</h3>
@@ -33,9 +38,17 @@ export default function IngredientsInProgress({ recipe }) {
             >
               <input
                 type="checkbox"
+                name={ `isCheck${index}` }
+                // checked={ isCheck }
+                onChange={ handleChange }
                 id={ `ingredient-${index}` }
               />
-              {`-${ingredient[0]} - ${ingredient[1]}`}
+              <p
+                style={ isCheck[`isCheck${index}`] ? { textDecoration: 'line-through' }
+                  : { textDecoration: '' } }
+              >
+                {`-${ingredient[0]} - ${ingredient[1]}`}
+              </p>
             </label>
             <br />
           </>

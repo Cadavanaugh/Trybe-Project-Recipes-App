@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
-import style from '../styles/RecipeDetails.module.css';
+// import style from '../styles/RecipeDetails.module.css';
 import { fetchFoodRecipe, fetchDrinkRecipe } from '../services/fetchFoodsAndDrinks';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -17,11 +17,9 @@ function RecipeDetails() {
   const { setError, meals, drinks } = useContext(RecipesContext);
   const { pathname } = useLocation();
   const { idReceita } = useParams();
-  const history = useHistory();
   const [recipe, setRecipe] = useState([]);
   const [isNotRecipeDone, setIsRecipeDone] = useState(true);
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
-  const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
   const foodsPath = pathname.includes('/foods');
   const recommended = foodsPath ? drinks : meals;
 
@@ -78,16 +76,6 @@ function RecipeDetails() {
               <h3>Recommended</h3>
               <Carroussel recommended={ recommended } foodsPath={ foodsPath } />
             </section>
-
-            <button
-              className={ style.fixedButton }
-              data-testid="start-recipe-btn"
-              type="button"
-              onClick={ () => history.push(`/${redirect}/${idReceita}/in-progress`) }
-            >
-              Start Recipe
-
-            </button>
 
             { isNotRecipeDone && (<RecipeButton
               foodsPath={ foodsPath }
