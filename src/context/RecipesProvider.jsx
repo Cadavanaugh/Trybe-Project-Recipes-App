@@ -20,7 +20,6 @@ function RecipesProvider({ children }) {
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [favoriteFoods, setFavoriteFoods] = useState([]);
-  console.log(history);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);

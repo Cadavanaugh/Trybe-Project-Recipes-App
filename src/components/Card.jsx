@@ -9,7 +9,6 @@ function Card({ img, name, index, path, testIDCard, testIDTitle }) {
         <img
           src={ img }
           alt={ name }
-          width="100px"
           data-testid={ `${index}-card-img` }
         />
       </Link>
