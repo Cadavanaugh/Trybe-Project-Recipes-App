@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import RecipesContext from '../context/RecipesContext';
 
 export default function Ingredients({ recipe }) {
   const ingredientsList = Object.entries(recipe[0])
