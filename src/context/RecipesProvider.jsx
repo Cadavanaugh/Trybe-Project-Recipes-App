@@ -18,6 +18,7 @@ function RecipesProvider({ children }) {
   const [error, setError] = useState({});
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const [favoriteFoods, setFavoriteFoods] = useState([]);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);
@@ -82,6 +83,8 @@ function RecipesProvider({ children }) {
     pathname,
     searchDrinks,
     setIngredientFood,
+    favoriteFoods,
+    setFavoriteFoods,
   };
 
   return (
