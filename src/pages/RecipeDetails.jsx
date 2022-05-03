@@ -7,8 +7,8 @@ import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
-import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import '../styles/RecipeDetails.css';
+import { fetchFoodRecipe, fetchDrinkRecipe } from '../services/fetchFoodsAndDrinks';
 
 const trintaDois = 32;
 const quarentaTres = 43;
@@ -24,11 +24,13 @@ function RecipeDetails() {
   const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
   const foodsPath = pathname.includes('/foods');
   const recommended = foodsPath ? meals : drinks;
+  console.log(recipe);
 
   useEffect(() => {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
     } else fetchDrinkRecipe(idReceita, setRecipe, setError);
+    console.log(idReceita);
   }, [foodsPath, idReceita, setError]);
 
   const idReceita2 = idReceita;

@@ -1,25 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
+import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 
 function FoodsInProgress() {
+  const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
-  const { meals } = useContext(RecipesContext);
-  const filteredFood = (meals.filter((meal) => meal.idMeal === idReceita));
-  console.log(idReceita);
-  // if (filteredFood[0] === undefined) {
-  //   return null;
-  // }
+  const [recipe, setRecipe] = useState([]);
+
+  useEffect(() => {
+    fetchFoodRecipe(idReceita, setRecipe, setError);
+  }, [idReceita, setError]);
 
   return (
     <div>
-      {filteredFood.length && (
+      {recipe.length > 0 && (
         <>
           <img
-            src={ filteredFood[0].strMealThumb }
+            src={ recipe[0].strMealThumb }
             data-testid="recipe-photo"
             alt="algo"
             width="200px"
@@ -27,17 +28,17 @@ function FoodsInProgress() {
           <h2
             data-testid="recipe-title"
           >
-            {filteredFood[0].strMeal}
+            {recipe[0].strMeal}
           </h2>
           <button type="button">
             <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
           </button>
-          <FavoriteButton recipe={ filteredFood } />
-          <p data-testid="recipe-category">{ filteredFood[0].strCategory }</p>
-          <IngredientsInProgress recipe={ filteredFood } />
+          <FavoriteButton recipe={ recipe } />
+          <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
+          <IngredientsInProgress recipe={ recipe } />
           <section data-testid="instructions">
             <h4>Instructions</h4>
-            <p>{filteredFood[0].strInstructions}</p>
+            <p>{recipe[0].strInstructions}</p>
           </section>
           <button
             type="button"

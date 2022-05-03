@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
-import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
+import { fetchDrinks, fetchFoods,
+} from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
 import RecipesContext from './RecipesContext';
 
@@ -19,6 +20,7 @@ function RecipesProvider({ children }) {
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [favoriteFoods, setFavoriteFoods] = useState([]);
+  console.log(history);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);

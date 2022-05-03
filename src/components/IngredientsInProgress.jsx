@@ -23,19 +23,23 @@ export default function IngredientsInProgress({ recipe }) {
   return (
     <div className="ingredients-container">
       <h3>Ingredients</h3>
-      {renderIngredients.map((ingredient, index) => (
-        <>
-          <label key={ index } htmlFor={ `ingredient-${index}` }>
-            <input
+      {renderIngredients.filter(([ingredient]) => ingredient)
+        .map((ingredient, index) => (
+          <>
+            <label
+              key={ index }
+              htmlFor={ `ingredient-${index}` }
               data-testid={ `${index}-ingredient-step` }
-              type="checkbox"
-              id={ `ingredient-${index}` }
-            />
-            {`-${ingredient[0]} - ${ingredient[1]}`}
-          </label>
-          <br />
-        </>
-      ))}
+            >
+              <input
+                type="checkbox"
+                id={ `ingredient-${index}` }
+              />
+              {`-${ingredient[0]} - ${ingredient[1]}`}
+            </label>
+            <br />
+          </>
+        ))}
     </div>
   );
 }
