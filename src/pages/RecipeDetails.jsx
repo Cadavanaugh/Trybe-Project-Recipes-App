@@ -1,40 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import Slider from 'react-slick';
 import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
 import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
-import Card from '../components/Card';
-import style from '../styles/RecipeDetails.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { quarentaTres, seis, trintaDois } from '../services/variables';
+import { quarentaTres, trintaDois } from '../services/variables';
+import Carroussel from '../components/Carroussel';
+import RecipeButton from '../components/RecipeButton';
 
 function RecipeDetails() {
   const { setError, meals, drinks } = useContext(RecipesContext);
   const { pathname } = useLocation();
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
+  const [isNotRecipeDone, setIsRecipeDone] = useState(true);
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
-  const keyRecommended = pathname.includes('/foods') ? 'Drink' : 'Meal';
   const foodsPath = pathname.includes('/foods');
   const recommended = foodsPath ? drinks : meals;
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+
+  const getDoneRecipes = () => {
+    if (localStorage.doneRecipes !== undefined) {
+      const doneRec = JSON.parse(localStorage.doneRecipes);
+      const isIdRecipe = doneRec.find((item) => item.id === idReceita);
+      if (isIdRecipe) setIsRecipeDone(false);
+    }
   };
 
   useEffect(() => {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
     } else fetchDrinkRecipe(idReceita, setRecipe, setError);
+    getDoneRecipes();
   }, []);
 
   return (
@@ -73,36 +74,13 @@ function RecipeDetails() {
 
             <section>
               <h3>Recommended</h3>
-              <Slider { ...settings } className={ style.slick }>
-                {
-                  recommended.slice(0, seis)
-                    .map((item, index) => (
-                      <Card
-                        key={ item[`id${keyRecommended}`] }
-                        name={ item[`str${keyRecommended}`] }
-                        img={ item[`str${keyRecommended}Thumb`] }
-                        index={ index }
-                        path={ foodsPath
-                          ? `/foods/${item[`id${keyRecommended}`]}`
-                          : `/drinks/${item[`id${keyRecommended}`]}` }
-                        testIDCard="recomendation"
-                        testIDTitle="recomendation-title"
-                      />
-                    ))
-                }
-              </Slider>
-
+              <Carroussel recommended={ recommended } foodsPath={ foodsPath } />
             </section>
 
-            <button
-              className={ style.fixedButton }
-              data-testid="start-recipe-btn"
-              type="button"
-            >
-              Start Recipe
-
-            </button>
-
+            { isNotRecipeDone && (<RecipeButton
+              foodsPath={ foodsPath }
+              idReceita={ idReceita }
+            />)}
           </>)
       }
     </div>
