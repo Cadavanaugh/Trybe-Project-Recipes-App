@@ -16,12 +16,16 @@ function RecipeDetails() {
   const [recipe, setRecipe] = useState([]);
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
   const foodsPath = pathname.includes('/foods');
+  // const randomPath = pathname.includes('/surprise-food');
   console.log(recipe);
 
   useEffect(() => {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
     } else fetchDrinkRecipe(idReceita, setRecipe, setError);
+    // if (randomPath) {
+    //   fetchRandomFood(idReceita, setRecipe, setError);
+    // }
   }, []);
 
   return (

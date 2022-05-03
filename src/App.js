@@ -14,7 +14,7 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeDetails from './pages/RecipeDetails';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
-// import RandomFood from './pages/RandomFood';
+// import RandomFoodPage from './pages/RandomFoodPage';
 // import RandomDrink from './pages/RandomDrink';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/foods/:idReceita" component={ RecipeDetails } />
         <Route exact path="/drinks" component={ Drinks } />
         <Route exact path="/drinks/:idReceita" component={ RecipeDetails } />
-        {/* <Route exact path="/surprise-food" component={ RandomFood } /> */}
+        {/* <Route exact path="/surprise-food" component={ RandomFoodPage } /> */}
         {/* <Route exact path="/drinks/surprise-drink" component={ RandomDrink } /> */}
         {/* <Route
           exact

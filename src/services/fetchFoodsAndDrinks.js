@@ -35,6 +35,12 @@ export const fetchFoodRecipe = (id, succcess, fail) => {
         ? succcess(json.meals) : fail(json))));
 };
 
+// export const fetchRandomFood = () => {
+//   fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+//     .then((response) => response.json()
+//       .then((json) => (json.meals[0].idMeal)));
+// };
+
 export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
     .then((response) => response.json()
@@ -43,3 +49,10 @@ export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
 };
 
 // www.thecocktaildb.com/api/json/v1/1/filter.php?c=
+
+// endpoints:
+//
+// categorias: https://www.themealdb.com/api/json/v1/1/list.php?c=list
+// nacionalidades: https://www.themealdb.com/api/json/v1/1/list.php?a=list
+// ingredientes: https://www.themealdb.com/api/json/v1/1/list.php?i=list
+//

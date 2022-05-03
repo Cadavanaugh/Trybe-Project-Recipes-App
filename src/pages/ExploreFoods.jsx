@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import PageButton from '../components/PageButton';
 // import { randomFoodRecipeAPI } from '../services/randomFoodRecipeAPI';
 
-function ExploreFoods({ randomRecipe }) {
+function ExploreFoods() {
   return (
     <div>
       <Header showSearchButton pageTitle="Explore Foods" />
@@ -23,7 +23,7 @@ function ExploreFoods({ randomRecipe }) {
       <PageButton
         targetPageTitle="Surprise me!"
         dataTestId="explore-surprise"
-        routePath={ `/foods/${randomRecipe}` }
+        routePath="/foods/surprise-food"
       />
     </div>
   );
