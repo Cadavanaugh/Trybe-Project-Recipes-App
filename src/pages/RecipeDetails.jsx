@@ -5,13 +5,13 @@ import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
-import shareIcon from '../images/shareIcon.svg';
 import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { quarentaTres, trintaDois } from '../services/variables';
 import Carroussel from '../components/Carroussel';
 import RecipeButton from '../components/RecipeButton';
+import ShareButton from '../components/ShareButton';
 
 function RecipeDetails() {
   const { setError, meals, drinks } = useContext(RecipesContext);
@@ -52,9 +52,7 @@ function RecipeDetails() {
 
             <section>
               <h1 data-testid="recipe-title">{recipe[0][`str${key}`]}</h1>
-              <button type="button">
-                <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
-              </button>
+              <ShareButton />
               <FavoriteButton recipe={ recipe } />
             </section>
 
