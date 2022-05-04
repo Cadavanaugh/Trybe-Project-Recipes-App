@@ -17,29 +17,9 @@ function DrinksInProgress() {
   const redirect = pathname.includes('/drinks') ? 'drinks' : 'foods';
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
   const foodsPath = pathname.includes('/foods');
-  // const [inProgress, setInProgress] = useState({
-  //   inProgressRecipes: {
-  //     cocktails: {
-  //       idReceita: [],
-  //     },
-  //     meals,
-  //   } });
-
-  // const saveProgress = () => {
-  //   // const save = { cocktails: { idReceita } };
-  //   // const { cocktails: { idDabebida: idReceita } } = inProgressRecipes;
-  //   // if (!localStorage.inProgresRecipes) localStorage.inProgresRecipes = '{}';
-  //   // const localStored = JSON.parse(localStorage.inProgresRecipes);
-  //   // setInProgress(localStored);
-  //   localStorage.setItem('inProgressRecipes', JSON.stringify({ cocktails }));
-  //   localStorage.setItem('idReceita', idReceita);
-  //   // localStorage.setItem('mealsToken', '1');
-  //   // localStorage.setItem('cocktailsToken', '1');
-  // };
 
   useEffect(() => {
     fetchDrinkRecipe(idReceita, setRecipe, setError);
-    // saveProgress();
   }, [idReceita, setError]);
 
   const shareFunc = () => {

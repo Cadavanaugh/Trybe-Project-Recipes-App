@@ -9,7 +9,6 @@ function RecipeButton({ foodsPath, idReceita }) {
   const { pathname } = useLocation();
   const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
   const history = useHistory();
-  // const idType = foodsPath ? 'id-da-comida' : 'id-da-bebida';
 
   const getInProgressRecipes = () => {
     if (localStorage.inProgressRecipes !== undefined) {
