@@ -4,8 +4,6 @@ import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
 import RecipesContext from '../context/RecipesContext';
-// import shareIcon from '../images/shareIcon.svg';
-// import style from '../styles/RecipeDetails.module.css';
 import { fetchFoodRecipe, fetchDrinkRecipe } from '../services/fetchFoodsAndDrinks';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
