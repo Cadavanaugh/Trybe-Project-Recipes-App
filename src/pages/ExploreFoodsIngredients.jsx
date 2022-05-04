@@ -31,6 +31,7 @@ function ExploreFoodsIngredients() {
           {info.meals.map((ingredient, index) => (
             index < doze && (
               <Link
+                key={ index }
                 exact="true"
                 to={ { pathname: '/foods', explore: true } }
                 onClick={ () => handleClick((ingredient.strIngredient)) }
@@ -45,7 +46,6 @@ function ExploreFoodsIngredients() {
                     width="100px"
                     data-testid={ `${index}-card-img` }
                   />
-
                   <p
                     data-testid={ `${index}-card-name` }
                   >

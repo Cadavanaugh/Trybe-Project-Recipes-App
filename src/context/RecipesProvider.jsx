@@ -20,6 +20,7 @@ function RecipesProvider({ children }) {
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [favoriteFoods, setFavoriteFoods] = useState([]);
   const [exploreMeals, setExploreMeals] = useState([]);
+  const [exploreDrinks, setExploreDrinks] = useState([]);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);
@@ -87,6 +88,8 @@ function RecipesProvider({ children }) {
     setFavoriteFoods,
     exploreMeals,
     setExploreMeals,
+    exploreDrinks,
+    setExploreDrinks,
   };
 
   return (

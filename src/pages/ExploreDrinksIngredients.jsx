@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-// import { Card } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import RecipesContext from '../context/RecipesContext';
+import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
+import { doze } from '../services/variables';
 
 function ExploreDrinksIngredients() {
+  const { setError, setExploreDrinks } = useContext(RecipesContext);
   const [info, setInfo] = useState({});
-  //
-  // endpoints:
-  //
-  // ingredientes: https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
-  // imagens dos ingredientes: www.thecocktaildb.com/images/ingredients/{nome do ingrediente}-Small.png
-  //
+
   useEffect(() => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
@@ -20,7 +18,10 @@ function ExploreDrinksIngredients() {
       });
   }, []);
 
-  const maxIngToShow = 12;
+  const handleClick = (ingr) => {
+    fetchRecipesByIngredient(ingr, setExploreDrinks, setError);
+  };
+
   const imgAPI = 'https://www.thecocktaildb.com/images/ingredients';
   return (
     <>
@@ -28,26 +29,30 @@ function ExploreDrinksIngredients() {
       {info.drinks && (
         <div>
           {info.drinks.map((ingredient, index) => (
-            index < maxIngToShow && (
-              <div
+            index < doze && (
+              <Link
                 key={ index }
-                data-testid={ `${index}-ingredient-card` }
+                exact="true"
+                to={ { pathname: '/drinks', explore: true } }
+                onClick={ () => handleClick((ingredient.strIngredient)) }
               >
-                {/* <Link exact="true" to={ path }> */}
-                <img
-                  src={ `${imgAPI}/${ingredient.strIngredient1}-Small.png` }
-                  alt={ ingredient.strIngredient1 }
-                  width="100px"
-                  data-testid={ `${index}-card-img` }
-                />
-                {/* </Link> */}
-                <p
-                  data-testid={ `${index}-card-name` }
+                <div
+                  key={ index }
+                  data-testid={ `${index}-ingredient-card` }
                 >
-                  {ingredient.strIngredient1}
-
-                </p>
-              </div>
+                  <img
+                    src={ `${imgAPI}/${ingredient.strIngredient1}-Small.png` }
+                    alt={ ingredient.strIngredient1 }
+                    width="100px"
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {ingredient.strIngredient1}
+                  </p>
+                </div>
+              </Link>
             )
           ))}
         </div>
