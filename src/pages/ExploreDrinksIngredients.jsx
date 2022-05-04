@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
 // import { Card } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -52,6 +53,7 @@ function ExploreDrinksIngredients() {
           ))}
         </div>
       )}
+      <Footer />
     </>
   );
 }

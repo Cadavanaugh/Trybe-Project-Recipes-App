@@ -36,14 +36,14 @@ function Foods({ location }) {
   useEffect(() => {
     if (ingredientFood.length) {
       setRenderCards(ingredientFood);
-    } else if (location.explore) {
-      setRenderCards(exploreMeals);
     } else if (isFilter) {
       setRenderCards(categorizedMeals);
+    } else if (location.explore) {
+      setRenderCards(exploreMeals);
     } else {
       setRenderCards(meals);
     }
-  }, [meals, ingredientFood, exploreMeals]);
+  }, [meals, ingredientFood, exploreMeals, isFilter]);
 
   return (
     <>
