@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
@@ -57,6 +58,7 @@ function ExploreDrinksIngredients() {
           ))}
         </div>
       )}
+      <Footer />
     </>
   );
 }
