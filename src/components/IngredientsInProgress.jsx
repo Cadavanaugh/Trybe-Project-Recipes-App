@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
 export default function IngredientsInProgress({ recipe }) {
   const { pathname } = useContext(RecipesContext);
-  const [isCheck, setIsCheck] = useState(false);
+  const { idReceita } = useParams();
+  const initialStorage = JSON.parse(localStorage
+    .getItem('inProgressRecipe'))?.cocktails[idReceita];
+  const [isCheck, setIsCheck] = useState(initialStorage || false);
   const emptyIngredient = pathname.includes('/foods') ? '' : null;
   const emptyIngredient2 = pathname.includes('/foods') ? ' ' : null;
 
@@ -23,7 +27,29 @@ export default function IngredientsInProgress({ recipe }) {
 
   const handleChange = ({ target }) => {
     setIsCheck({ ...isCheck, [target.name]: target.checked });
+    const saveKey = JSON.parse(localStorage.getItem('inProgressRecipe'));
+    if (saveKey.cocktails[idReceita]) {
+      saveKey.cocktails[idReceita] = { ...isCheck, [target.name]: target.checked };
+    } else {
+      saveKey.cocktails[idReceita] = { [target.name]: target.checked };
+    }
+    localStorage.setItem('inProgressRecipe', JSON.stringify(saveKey));
   };
+
+  const saveProgress = () => {
+    localStorage.setItem('inProgressRecipe', JSON.stringify(
+      {
+        cocktails: {},
+        meals: {},
+      },
+    ));
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem('inProgressRecipe')) {
+      saveProgress();
+    }
+  }, []);
 
   return (
     <div className="ingredients-container">
@@ -39,7 +65,7 @@ export default function IngredientsInProgress({ recipe }) {
               <input
                 type="checkbox"
                 name={ `isCheck${index}` }
-                // checked={ isCheck }
+                checked={ isCheck[`isCheck${index}`] }
                 onChange={ handleChange }
                 id={ `ingredient-${index}` }
               />

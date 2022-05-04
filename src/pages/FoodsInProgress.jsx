@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import copy from 'clipboard-copy';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
-import shareIcon from '../images/shareIcon.svg';
 import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import shareIcon from '../images/shareIcon.svg';
 
 function FoodsInProgress() {
   const history = useHistory();
+  const { pathname } = useLocation();
   const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
   const [recipe, setRecipe] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
 
   useEffect(() => {
     fetchFoodRecipe(idReceita, setRecipe, setError);
@@ -18,6 +22,11 @@ function FoodsInProgress() {
 
   const handleClickDone = () => {
     history.push('/done-recipes');
+  };
+
+  const shareFunc = () => {
+    copy(`http://localhost:3000/${redirect}/${idReceita}`);
+    setCopied(true);
   };
 
   return (
@@ -35,8 +44,13 @@ function FoodsInProgress() {
           >
             {recipe[0].strMeal}
           </h2>
-          <button type="button">
-            <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
+          {copied && <p>Link copied!</p>}
+          <button type="button" onClick={ shareFunc }>
+            <img
+              src={ shareIcon }
+              alt="Share"
+              data-testid="share-btn"
+            />
           </button>
           <FavoriteButton recipe={ recipe } />
           <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
@@ -49,7 +63,7 @@ function FoodsInProgress() {
             type="button"
             data-testid="finish-recipe-btn"
             // disabled={ disabledBtn }
-            onClick={ () => handleClickDone }
+            onClick={ handleClickDone }
           >
             Finish Recipe
           </button>
