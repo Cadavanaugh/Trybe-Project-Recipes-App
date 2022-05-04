@@ -33,18 +33,13 @@ export const fetchDrinkById = async (drinkId) => {
   const data = await result.json();
   return data;
 };
+
 export const fetchFoodRecipe = (id, succcess, fail) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => response.json()
       .then((json) => (response.ok
         ? succcess(json.meals) : fail(json))));
 };
-
-// export const fetchRandomFood = () => {
-//   fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-//     .then((response) => response.json()
-//       .then((json) => (json.meals[0].idMeal)));
-// };
 
 export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
@@ -53,11 +48,9 @@ export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
         ? succcess(json.drinks) : failDrink(json))));
 };
 
-// www.thecocktaildb.com/api/json/v1/1/filter.php?c=
-
-// endpoints:
-//
-// categorias: https://www.themealdb.com/api/json/v1/1/list.php?c=list
-// nacionalidades: https://www.themealdb.com/api/json/v1/1/list.php?a=list
-// ingredientes: https://www.themealdb.com/api/json/v1/1/list.php?i=list
-//
+export const fetchRecipesByIngredient = (ingredient, succcessByIngredient, fail) => {
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => response.json()
+      .then((json) => (response.ok
+        ? succcessByIngredient(json.meals) : fail(json))));
+};

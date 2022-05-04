@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { Card } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import RecipesContext from '../context/RecipesContext';
+import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
 
 function ExploreFoodsIngredients() {
+  const { setError, setExploreMeals } = useContext(RecipesContext);
   const [info, setInfo] = useState({});
   //
   // endpoints:
@@ -22,7 +24,11 @@ function ExploreFoodsIngredients() {
         console.log(response);
       });
   }, []);
-  const path = '/recipes-by-ingredient';
+
+  const handleClick = (ingr) => {
+    fetchRecipesByIngredient(ingr, setExploreMeals, setError);
+  };
+
   const maxIngToShow = 12;
   const imgAPI = 'https://www.themealdb.com/images/ingredients';
   return (
@@ -32,25 +38,29 @@ function ExploreFoodsIngredients() {
         <div>
           {info.meals.map((ingredient, index) => (
             index < maxIngToShow && (
-              <div
-                key={ index }
-                data-testid={ `${index}-ingredient-card` }
+              <Link
+                exact="true"
+                to={ { pathname: '/foods', explore: true } }
+                onClick={ () => handleClick((ingredient.strIngredient)) }
               >
-                <Link exact="true" to={ path }>
+                <div
+                  key={ index }
+                  data-testid={ `${index}-ingredient-card` }
+                >
                   <img
                     src={ `${imgAPI}/${ingredient.strIngredient}-Small.png` }
                     alt={ ingredient.strIngredient }
                     width="100px"
                     data-testid={ `${index}-card-img` }
                   />
-                </Link>
-                <p
-                  data-testid={ `${index}-card-name` }
-                >
-                  {ingredient.strIngredient}
 
-                </p>
-              </div>
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {ingredient.strIngredient}
+                  </p>
+                </div>
+              </Link>
             )
           ))}
         </div>
