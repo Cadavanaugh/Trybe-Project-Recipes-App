@@ -1,21 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { Card } from 'react-bootstrap';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
+import { doze } from '../services/variables';
 
 function ExploreFoodsIngredients() {
   const { setError, setExploreMeals } = useContext(RecipesContext);
   const [info, setInfo] = useState({});
-  //
-  // endpoints:
-  //
-  // categorias: https://www.themealdb.com/api/json/v1/1/list.php?c=list
-  // nacionalidades: https://www.themealdb.com/api/json/v1/1/list.php?a=list
-  // ingredientes: https://www.themealdb.com/api/json/v1/1/list.php?i=list
-  // imagens dos ingredientes: https://www.themealdb.com/images/ingredients/{nome-do-ingrediente}-Small.png
-  //
+
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
@@ -29,7 +22,6 @@ function ExploreFoodsIngredients() {
     fetchRecipesByIngredient(ingr, setExploreMeals, setError);
   };
 
-  const maxIngToShow = 12;
   const imgAPI = 'https://www.themealdb.com/images/ingredients';
   return (
     <>
@@ -37,7 +29,7 @@ function ExploreFoodsIngredients() {
       {info.meals && (
         <div>
           {info.meals.map((ingredient, index) => (
-            index < maxIngToShow && (
+            index < doze && (
               <Link
                 exact="true"
                 to={ { pathname: '/foods', explore: true } }

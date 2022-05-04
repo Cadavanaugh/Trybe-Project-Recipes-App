@@ -1,11 +1,19 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PageButton from '../components/PageButton';
+import { fetchSurpriseMe } from '../services/fetchFoodsAndDrinks';
 // import { randomFoodRecipeAPI } from '../services/randomFoodRecipeAPI';
 
 function ExploreFoods() {
+  const history = useHistory();
+  const handleSurpriseMe = async () => {
+    const surprise = await fetchSurpriseMe();
+    const id = surprise[0].idMeal;
+    history.push(`/foods/${id}`);
+  };
+
   return (
     <div>
       <Header showSearchButton pageTitle="Explore Foods" />
@@ -20,11 +28,18 @@ function ExploreFoods() {
         dataTestId="explore-by-nationality"
         routePath="/explore/foods/nationalities"
       />
-      <PageButton
+      <button
+        type="button"
+        data-testid="explore-surprise"
+        onClick={ handleSurpriseMe }
+      >
+        Surprise me!
+      </button>
+      {/* <PageButton
         targetPageTitle="Surprise me!"
         dataTestId="explore-surprise"
-        routePath="/foods/surprise-food"
-      />
+        routePath="/foods/:idReceita"
+      /> */}
     </div>
   );
 }
