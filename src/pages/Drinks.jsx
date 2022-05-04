@@ -5,9 +5,7 @@ import Header from '../components/Header';
 import '../styles/Foods.css';
 import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
-
-const max = 12;
-const maxCategoriesToShow = 6;
+import { doze, seis } from '../services/variables';
 
 function Drinks() {
   const { drinks, drinkCategories,
@@ -17,7 +15,6 @@ function Drinks() {
   const [renderCards, setRenderCards] = useState([]);
   const [category, setCategory] = useState('All');
   const [loading, setLoading] = useState(false);
-  console.log(ingredientFood);
 
   const handleCategoryFilter = async (choosenCategory) => {
     setIngredientFood([]);
@@ -44,13 +41,12 @@ function Drinks() {
     }
   }, [isFilter, drinks, categorizedDrinks, ingredientFood]);
 
-  console.log(renderCards);
   return (
     <>
       <Header pageTitle="Drinks" />
       <div>
         {
-          drinkCategories.slice(0, maxCategoriesToShow).map(({ strCategory }, index) => ( // falha nos testes por causa do delay
+          drinkCategories.slice(0, seis).map(({ strCategory }, index) => (
             <button
               data-testid={ `${strCategory}-category-filter` }
               type="button"
@@ -64,7 +60,7 @@ function Drinks() {
       </div>
       <div className="card-container">
         {loading ? <p>Loading...</p>
-          : renderCards.slice(0, max)
+          : renderCards.slice(0, doze)
             .map(({ strDrinkThumb, idDrink, strDrink }, index) => (
               <Card
                 key={ idDrink }
@@ -73,6 +69,7 @@ function Drinks() {
                 index={ index }
                 path={ `/drinks/${idDrink}` }
                 testIDCard="recipe"
+                testIDTitle="card-name"
               />))}
       </div>
       <Footer />

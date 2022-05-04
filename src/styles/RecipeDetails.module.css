@@ -1,0 +1,26 @@
+.fixedButton {
+  bottom: 0;
+  position: fixed;
+}
+
+.slick img {
+  width: 80%;
+}
+
+/* .carrousel {
+  align-items: center;
+  display: flex;
+  overflow-x: scroll;
+  width: 100vw;
+}
+
+.carrousel > div {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carrousel img {
+  width: 180px;
+} */

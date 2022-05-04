@@ -18,7 +18,11 @@ function Header({ pageTitle, showSearchButton }) {
 
 Header.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  showSearchButton: PropTypes.bool.isRequired,
+  showSearchButton: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  showSearchButton: false,
 };
 
 export default Header;

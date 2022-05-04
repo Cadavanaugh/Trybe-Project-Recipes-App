@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import RecipesContext from '../context/RecipesContext';
 
 export default function Ingredients({ recipe }) {
-  const { pathname } = useContext(RecipesContext);
-  const emptyIngredient = pathname.includes('/foods') ? '' : null;
-  const emptyIngredient2 = pathname.includes('/foods') ? ' ' : null;
-
   const ingredientsList = Object.entries(recipe[0])
-    .filter((item) => item[0].includes('strIngredient') && item[1] !== emptyIngredient);
+    .filter((item) => item[0].includes('strIngredient') && item[1] !== null);
+  const ingredientsList2 = ingredientsList.filter((item) => item[1] !== '');
   const measuresList = Object.entries(recipe[0])
-    .filter((item) => item[0].includes('strMeasure') && item[1] !== emptyIngredient2);
-  // Aqui causa bug na 32 pq há ingredientes sem medidas em bebidas
-  const renderIngredients = ingredientsList.reduce((acc, cur, idx) => {
+    .filter((item) => item[0].includes('strMeasure') && item[1] !== ' ');
+
+  const renderIngredients = ingredientsList2.reduce((acc, cur, idx) => {
+    while (ingredientsList2.length >= measuresList.length) {
+      measuresList.push(['', '']);
+    }
     acc = [...acc, [cur[1], measuresList[idx][1]]];
     return acc;
   }, []);
