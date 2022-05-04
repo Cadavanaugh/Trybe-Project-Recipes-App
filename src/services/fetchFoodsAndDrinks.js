@@ -54,3 +54,9 @@ export const fetchRecipesByIngredient = (ingredient, succcessByIngredient, fail)
       .then((json) => (response.ok
         ? succcessByIngredient(json.meals) : fail(json))));
 };
+
+export const fetchSurpriseMe = async () => {
+  const result = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+  const data = await result.json();
+  return data.meals;
+};
