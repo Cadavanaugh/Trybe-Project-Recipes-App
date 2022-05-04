@@ -4,6 +4,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 export default function FavoriteButton({ recipe, foodsPath, keyPath }) {
+  console.log('keypath', foodsPath);
+  console.log('keypath', keyPath);
   const [isFavorite, setIsFavorite] = useState(false);
   const id = recipe[0][`id${keyPath}`];
   const favorite = {

@@ -15,6 +15,8 @@ function FoodsInProgress() {
   const [recipe, setRecipe] = useState([]);
   const [copied, setCopied] = useState(false);
   const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
+  const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
+  const foodsPath = pathname.includes('/foods');
 
   useEffect(() => {
     fetchFoodRecipe(idReceita, setRecipe, setError);
@@ -52,7 +54,7 @@ function FoodsInProgress() {
               data-testid="share-btn"
             />
           </button>
-          <FavoriteButton recipe={ recipe } />
+          <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
           <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
           <IngredientsInProgress recipe={ recipe } />
           <section data-testid="instructions">
