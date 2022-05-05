@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
-import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
+import { fetchDrinkRecipeByIngredient } from '../services/fetchFoodsAndDrinks';
 import { doze } from '../services/variables';
 
 function ExploreDrinksIngredients() {
@@ -20,7 +20,7 @@ function ExploreDrinksIngredients() {
   }, []);
 
   const handleClick = (ingr) => {
-    fetchRecipesByIngredient(ingr, setExploreDrinks, setError);
+    fetchDrinkRecipeByIngredient(ingr, setExploreDrinks, setError);
   };
 
   const imgAPI = 'https://www.thecocktaildb.com/images/ingredients';
@@ -34,8 +34,8 @@ function ExploreDrinksIngredients() {
               <Link
                 key={ index }
                 exact="true"
-                to={ { pathname: '/drinks', explore: true } }
-                onClick={ () => handleClick((ingredient.strIngredient)) }
+                to={ { pathname: '/drinks', explore: false } }
+                onClick={ () => handleClick((ingredient.strIngredient1)) }
               >
                 <div
                   key={ index }

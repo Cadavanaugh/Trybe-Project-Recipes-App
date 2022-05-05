@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 
 function SearchButton() {
   const { setIngredientFood } = useContext(RecipesContext);
+  const { setIngredientDrink } = useContext(RecipesContext);
   const [showSearchBar, setShowSearchBar] = useState(false);
   return (
     <div>
@@ -17,6 +18,7 @@ function SearchButton() {
         onClick={ () => {
           setShowSearchBar(!showSearchBar);
           setIngredientFood([]);
+          setIngredientDrink([]);
         } }
       />
       { showSearchBar && <SearchBar />}

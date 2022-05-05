@@ -11,6 +11,7 @@ function RecipesProvider({ children }) {
   const history = useHistory();
   const { pathname } = useLocation();
   const [ingredientFood, setIngredientFood] = useState([]);
+  const [ingredientDrink, setIngredientDrink] = useState([]);
   const [radioSearch, setRadioSearch] = useState('');
   const [inputSearch, setInputSearch] = useState('');
   const [meals, setMeals] = useState([]);
@@ -62,7 +63,7 @@ function RecipesProvider({ children }) {
         if (cocktails.drinks.length === 1) {
           history.push(`/drinks/${cocktails.drinks[0].idDrink}`);
         }
-        setIngredientFood(cocktails.drinks/* .splice(0, position) */);
+        setIngredientDrink(cocktails.drinks/* .splice(0, position) */);
       } else {
         global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
@@ -71,6 +72,7 @@ function RecipesProvider({ children }) {
 
   const store = {
     ingredientFood,
+    ingredientDrink,
     radioSearch,
     valueInputsRadios,
     valueInputs,
@@ -84,6 +86,7 @@ function RecipesProvider({ children }) {
     pathname,
     searchDrinks,
     setIngredientFood,
+    setIngredientDrink,
     favoriteFoods,
     setFavoriteFoods,
     exploreMeals,

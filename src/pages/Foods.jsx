@@ -9,7 +9,6 @@ import { doze, seis } from '../services/variables';
 import '../styles/Foods.css';
 
 function Foods({ location }) {
-  console.log(location.explore);
   const { meals, foodCategories, exploreMeals,
     ingredientFood, setIngredientFood } = useContext(RecipesContext);
   const [categorizedMeals, setCategorizedMeals] = useState([]);

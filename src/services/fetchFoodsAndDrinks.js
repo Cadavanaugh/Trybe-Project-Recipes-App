@@ -55,8 +55,21 @@ export const fetchRecipesByIngredient = (ingredient, succcessByIngredient, fail)
         ? succcessByIngredient(json.meals) : fail(json))));
 };
 
-export const fetchSurpriseMe = async () => {
+export const fetchDrinkRecipeByIngredient = (ingredient, succcessByIngredient, fail) => {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => response.json()
+      .then((json) => (response.ok
+        ? succcessByIngredient(json.drinks) : fail(json))));
+};
+
+export const fetchSurpriseMeFood = async () => {
   const result = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
   const data = await result.json();
   return data.meals;
+};
+
+export const fetchSurpriseMeDrink = async () => {
+  const result = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+  const data = await result.json();
+  return data.drinks;
 };

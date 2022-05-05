@@ -3,13 +3,13 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PageButton from '../components/PageButton';
-import { fetchSurpriseMe } from '../services/fetchFoodsAndDrinks';
+import { fetchSurpriseMeFood } from '../services/fetchFoodsAndDrinks';
 // import { randomFoodRecipeAPI } from '../services/randomFoodRecipeAPI';
 
 function ExploreFoods() {
   const history = useHistory();
   const handleSurpriseMe = async () => {
-    const surprise = await fetchSurpriseMe();
+    const surprise = await fetchSurpriseMeFood();
     const id = surprise[0].idMeal;
     history.push(`/foods/${id}`);
   };
