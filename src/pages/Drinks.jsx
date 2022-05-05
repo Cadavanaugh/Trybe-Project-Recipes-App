@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
@@ -7,9 +8,9 @@ import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
 import { doze, seis } from '../services/variables';
 
-function Drinks() {
-  const { drinks, drinkCategories,
-    ingredientFood, setIngredientFood } = useContext(RecipesContext);
+function Drinks({ location }) {
+  const { drinks, drinkCategories, exploreDrinks,
+    ingredientDrink, setIngredientDrink } = useContext(RecipesContext);
   const [categorizedDrinks, setCategorizedDrinks] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
   const [renderCards, setRenderCards] = useState([]);
@@ -17,7 +18,9 @@ function Drinks() {
   const [loading, setLoading] = useState(false);
 
   const handleCategoryFilter = async (choosenCategory) => {
-    setIngredientFood([]);
+    setIngredientDrink([]);
+    console.log(category);
+    console.log(choosenCategory);
     if (choosenCategory === category || choosenCategory === 'All') {
       setIsFilter(false);
     } else {
@@ -29,18 +32,20 @@ function Drinks() {
       setLoading(false);
     }
   };
-
+  console.log(categorizedDrinks);
   // Usado para decidir o que deve ser renderizado
   useEffect(() => {
-    if (ingredientFood.length) {
-      setRenderCards(ingredientFood);
+    if (ingredientDrink.length) {
+      setRenderCards(ingredientDrink);
     } else if (isFilter) {
       setRenderCards(categorizedDrinks);
+    } else if (location.explore) {
+      setRenderCards(exploreDrinks);
     } else {
       setRenderCards(drinks);
     }
-  }, [isFilter, drinks, categorizedDrinks, ingredientFood]);
-
+  }, [isFilter, drinks, ingredientDrink, exploreDrinks, categorizedDrinks]);
+  console.log(renderCards);
   return (
     <>
       <Header pageTitle="Drinks" />
@@ -77,5 +82,17 @@ function Drinks() {
 
   );
 }
+
+Drinks.propTypes = {
+  location: PropTypes.shape({
+    explore: PropTypes.bool,
+  }),
+};
+
+Drinks.defaultProps = {
+  location: PropTypes.shape({
+    explore: false,
+  }),
+};
 
 export default Drinks;

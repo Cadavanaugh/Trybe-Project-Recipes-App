@@ -34,7 +34,7 @@ function ExploreDrinksIngredients() {
               <Link
                 key={ index }
                 exact="true"
-                to={ { pathname: '/drinks', explore: false } }
+                to={ { pathname: '/drinks', explore: true } }
                 onClick={ () => handleClick((ingredient.strIngredient1)) }
               >
                 <div

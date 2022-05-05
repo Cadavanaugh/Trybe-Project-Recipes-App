@@ -42,7 +42,7 @@ function Foods({ location }) {
     } else {
       setRenderCards(meals);
     }
-  }, [meals, ingredientFood, exploreMeals, isFilter]);
+  }, [meals, ingredientFood, exploreMeals, isFilter, categorizedMeals]);
 
   return (
     <>

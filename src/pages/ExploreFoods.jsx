@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PageButton from '../components/PageButton';
 import { fetchSurpriseMeFood } from '../services/fetchFoodsAndDrinks';
-// import { randomFoodRecipeAPI } from '../services/randomFoodRecipeAPI';
 
 function ExploreFoods() {
   const history = useHistory();
