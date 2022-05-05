@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -7,8 +8,8 @@ import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
 import { doze, seis } from '../services/variables';
 import '../styles/Foods.css';
 
-function Foods() {
-  const { meals, foodCategories,
+function Foods({ location }) {
+  const { meals, foodCategories, exploreMeals,
     ingredientFood, setIngredientFood } = useContext(RecipesContext);
   const [categorizedMeals, setCategorizedMeals] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
@@ -36,10 +37,12 @@ function Foods() {
       setRenderCards(ingredientFood);
     } else if (isFilter) {
       setRenderCards(categorizedMeals);
+    } else if (location.explore) {
+      setRenderCards(exploreMeals);
     } else {
       setRenderCards(meals);
     }
-  }, [isFilter, meals, categorizedMeals, ingredientFood]);
+  }, [meals, ingredientFood, exploreMeals, isFilter]);
 
   return (
     <>
@@ -78,5 +81,17 @@ function Foods() {
 
   );
 }
+
+Foods.propTypes = {
+  location: PropTypes.shape({
+    explore: PropTypes.bool,
+  }),
+};
+
+Foods.defaultProps = {
+  location: PropTypes.shape({
+    explore: false,
+  }),
+};
 
 export default Foods;

@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import drinkSearchAPI from '../services/drinkAPI';
 import { fetchDrinkCategories, fetchFoodCategories } from '../services/fetchCategories';
-import { fetchDrinks, fetchFoods,
-} from '../services/fetchFoodsAndDrinks';
+import { fetchDrinks, fetchFoods } from '../services/fetchFoodsAndDrinks';
 import foodSearchAPI from '../services/foodAPI';
 import RecipesContext from './RecipesContext';
 
@@ -12,6 +11,7 @@ function RecipesProvider({ children }) {
   const history = useHistory();
   const { pathname } = useLocation();
   const [ingredientFood, setIngredientFood] = useState([]);
+  const [ingredientDrink, setIngredientDrink] = useState([]);
   const [radioSearch, setRadioSearch] = useState('');
   const [inputSearch, setInputSearch] = useState('');
   const [meals, setMeals] = useState([]);
@@ -20,6 +20,8 @@ function RecipesProvider({ children }) {
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [favoriteFoods, setFavoriteFoods] = useState([]);
+  const [exploreMeals, setExploreMeals] = useState([]);
+  const [exploreDrinks, setExploreDrinks] = useState([]);
 
   useEffect(() => {
     fetchFoods(setMeals, setError);
@@ -61,7 +63,7 @@ function RecipesProvider({ children }) {
         if (cocktails.drinks.length === 1) {
           history.push(`/drinks/${cocktails.drinks[0].idDrink}`);
         }
-        setIngredientFood(cocktails.drinks/* .splice(0, position) */);
+        setIngredientDrink(cocktails.drinks/* .splice(0, position) */);
       } else {
         global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
@@ -70,6 +72,7 @@ function RecipesProvider({ children }) {
 
   const store = {
     ingredientFood,
+    ingredientDrink,
     radioSearch,
     valueInputsRadios,
     valueInputs,
@@ -83,8 +86,13 @@ function RecipesProvider({ children }) {
     pathname,
     searchDrinks,
     setIngredientFood,
+    setIngredientDrink,
     favoriteFoods,
     setFavoriteFoods,
+    exploreMeals,
+    setExploreMeals,
+    exploreDrinks,
+    setExploreDrinks,
   };
 
   return (

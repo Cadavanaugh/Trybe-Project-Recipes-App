@@ -34,6 +34,9 @@ function RecipeDetails() {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
     } else fetchDrinkRecipe(idReceita, setRecipe, setError);
+    // if (randomPath) {
+    //   fetchRandomFood(idReceita, setRecipe, setError);
+    // }
     getDoneRecipes();
   }, []);
 

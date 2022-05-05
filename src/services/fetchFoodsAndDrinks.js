@@ -33,6 +33,7 @@ export const fetchDrinkById = async (drinkId) => {
   const data = await result.json();
   return data;
 };
+
 export const fetchFoodRecipe = (id, succcess, fail) => {
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => response.json()
@@ -47,4 +48,28 @@ export const fetchDrinkRecipe = (idDrink, succcess, failDrink) => {
         ? succcess(json.drinks) : failDrink(json))));
 };
 
-// www.thecocktaildb.com/api/json/v1/1/filter.php?c=
+export const fetchRecipesByIngredient = (ingredient, succcessByIngredient, fail) => {
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => response.json()
+      .then((json) => (response.ok
+        ? succcessByIngredient(json.meals) : fail(json))));
+};
+
+export const fetchDrinkRecipeByIngredient = (ingredient, succcessByIngredient, fail) => {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => response.json()
+      .then((json) => (response.ok
+        ? succcessByIngredient(json.drinks) : fail(json))));
+};
+
+export const fetchSurpriseMeFood = async () => {
+  const result = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+  const data = await result.json();
+  return data.meals;
+};
+
+export const fetchSurpriseMeDrink = async () => {
+  const result = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+  const data = await result.json();
+  return data.drinks;
+};
