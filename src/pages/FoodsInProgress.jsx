@@ -12,11 +12,12 @@ function FoodsInProgress() {
   const { pathname } = useLocation();
   const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
-  const [recipe, setRecipe] = useState([]);
+  const [recipe, setRecipe] = useState([{}]);
   const [copied, setCopied] = useState(false);
   const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
   const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
   const foodsPath = pathname.includes('/foods');
+  const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
     fetchFoodRecipe(idReceita, setRecipe, setError);
@@ -56,7 +57,7 @@ function FoodsInProgress() {
           </button>
           <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
           <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
-          <IngredientsInProgress recipe={ recipe } />
+          <IngredientsInProgress recipe={ recipe } isDisabled={ setIsDisabled } />
           <section data-testid="instructions">
             <h4>Instructions</h4>
             <p>{recipe[0].strInstructions}</p>
@@ -64,7 +65,7 @@ function FoodsInProgress() {
           <button
             type="button"
             data-testid="finish-recipe-btn"
-            // disabled={ disabledBtn }
+            disabled={ isDisabled }
             onClick={ handleClickDone }
           >
             Finish Recipe

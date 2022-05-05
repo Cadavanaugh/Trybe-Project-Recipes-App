@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom';
 import React, { useContext, useState, useEffect } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
-export default function IngredientsInProgress({ recipe }) {
+export default function IngredientsInProgress({ recipe, isDisabled }) {
   const { pathname } = useContext(RecipesContext);
   const { idReceita } = useParams();
   const pageType = pathname.includes('/foods') ? 'meals' : 'cocktails';
   const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipe'));
   const initialStorage = pageType === 'cocktails'
     ? recipesInProgress?.cocktails[idReceita] : recipesInProgress?.meals[idReceita];
-  console.log(initialStorage);
   const [isCheck, setIsCheck] = useState(initialStorage || false);
   const emptyIngredient = pathname.includes('/foods') ? '' : null;
 
@@ -36,6 +35,8 @@ export default function IngredientsInProgress({ recipe }) {
       saveKey[pageType][idReceita] = { [target.name]: target.checked };
     }
     localStorage.setItem('inProgressRecipe', JSON.stringify(saveKey));
+    const arrays = [...document.querySelectorAll('input')];
+    isDisabled(!arrays.every((element) => element.checked));
   };
 
   const saveProgress = () => {
@@ -46,6 +47,11 @@ export default function IngredientsInProgress({ recipe }) {
       },
     ));
   };
+
+  useEffect(() => {
+    const arrays = [...document.querySelectorAll('input')];
+    isDisabled(!arrays.every((element) => element.checked));
+  }, [recipe]);
 
   useEffect(() => {
     if (!localStorage.getItem('inProgressRecipe')) {
@@ -87,4 +93,5 @@ export default function IngredientsInProgress({ recipe }) {
 
 IngredientsInProgress.propTypes = {
   recipe: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isDisabled: PropTypes.func.isRequired,
 };
