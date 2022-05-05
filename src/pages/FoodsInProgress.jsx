@@ -1,20 +1,36 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import copy from 'clipboard-copy';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
-import shareIcon from '../images/shareIcon.svg';
 import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import shareIcon from '../images/shareIcon.svg';
 
 function FoodsInProgress() {
   const history = useHistory();
+  const { pathname } = useLocation();
   const { setError } = useContext(RecipesContext);
   const { idReceita } = useParams();
-  const [recipe, setRecipe] = useState([]);
+  const [recipe, setRecipe] = useState([{}]);
+  const [copied, setCopied] = useState(false);
+  const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
+  const key = pathname.includes('/foods') ? 'Meal' : 'Drink';
+  const foodsPath = pathname.includes('/foods');
+  const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
     fetchFoodRecipe(idReceita, setRecipe, setError);
   }, [idReceita, setError]);
+
+  const handleClickDone = () => {
+    history.push('/done-recipes');
+  };
+
+  const shareFunc = () => {
+    copy(`http://localhost:3000/${redirect}/${idReceita}`);
+    setCopied(true);
+  };
 
   return (
     <div>
@@ -31,12 +47,17 @@ function FoodsInProgress() {
           >
             {recipe[0].strMeal}
           </h2>
-          <button type="button">
-            <img data-testid="share-btn" src={ shareIcon } alt="share Icon" />
+          {copied && <p>Link copied!</p>}
+          <button type="button" onClick={ shareFunc }>
+            <img
+              src={ shareIcon }
+              alt="Share"
+              data-testid="share-btn"
+            />
           </button>
-          <FavoriteButton recipe={ recipe } />
+          <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
           <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
-          <IngredientsInProgress recipe={ recipe } />
+          <IngredientsInProgress recipe={ recipe } isDisabled={ setIsDisabled } />
           <section data-testid="instructions">
             <h4>Instructions</h4>
             <p>{recipe[0].strInstructions}</p>
@@ -44,8 +65,8 @@ function FoodsInProgress() {
           <button
             type="button"
             data-testid="finish-recipe-btn"
-            // disabled={ disabledBtn }
-            onClick={ () => history.push('/done-recipes') }
+            disabled={ isDisabled }
+            onClick={ handleClickDone }
           >
             Finish Recipe
           </button>

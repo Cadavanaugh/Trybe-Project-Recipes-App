@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import style from '../styles/RecipeDetails.module.css';
 
 function RecipeButton({ foodsPath, idReceita }) {
   const [buttonName, setButtonName] = useState('Start Recipe');
   const recipeType = foodsPath ? 'meals' : 'cocktails';
+  const { pathname } = useLocation();
+  const redirect = pathname.includes('/foods') ? 'foods' : 'drinks';
   const history = useHistory();
 
   const getInProgressRecipes = () => {
@@ -25,9 +27,7 @@ function RecipeButton({ foodsPath, idReceita }) {
       className={ style.fixedButton }
       data-testid="start-recipe-btn"
       type="button"
-      onClick={ () => (foodsPath
-        ? history.push(`/foods/${idReceita}/in-progress`)
-        : history.push(`/drinks/${idReceita}/in-progress`)) }
+      onClick={ () => history.push(`/${redirect}/${idReceita}/in-progress`) }
     >
       {buttonName}
     </button>

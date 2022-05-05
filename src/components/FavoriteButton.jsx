@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 export default function FavoriteButton({ recipe, foodsPath, keyPath }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const id = recipe[0][`id${keyPath}`];
+  const { idReceita } = useParams();
   const favorite = {
-    id,
+    id: idReceita,
     type: foodsPath ? 'food' : 'drink',
     nationality: foodsPath ? recipe[0].strArea : '',
     category: recipe[0].strCategory,
@@ -19,7 +20,7 @@ export default function FavoriteButton({ recipe, foodsPath, keyPath }) {
   const updateIcon = () => {
     if (localStorage.favoriteRecipes !== undefined) {
       const favs = JSON.parse(localStorage.favoriteRecipes);
-      const isInFavorites = favs.find((fav) => fav.id === id);
+      const isInFavorites = favs.find((fav) => fav.id === idReceita);
       if (isInFavorites) {
         setIsFavorite(true);
       } else { setIsFavorite(false); }
@@ -29,7 +30,7 @@ export default function FavoriteButton({ recipe, foodsPath, keyPath }) {
   const saveFavorite = () => {
     if (!localStorage.favoriteRecipes) localStorage.favoriteRecipes = '[]';
     const favs = JSON.parse(localStorage.favoriteRecipes);
-    const isInFavorite = favs.find((fav) => fav.id === id);
+    const isInFavorite = favs.find((fav) => fav.id === idReceita);
     if (isInFavorite) {
       const remove = favs.filter((item) => item.id !== isInFavorite.id);
       localStorage.favoriteRecipes = JSON.stringify(remove);
@@ -45,7 +46,10 @@ export default function FavoriteButton({ recipe, foodsPath, keyPath }) {
   }, []);
 
   return (
-    <button type="button" onClick={ saveFavorite }>
+    <button
+      type="button"
+      onClick={ saveFavorite }
+    >
       <img
         data-testid="favorite-btn"
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
