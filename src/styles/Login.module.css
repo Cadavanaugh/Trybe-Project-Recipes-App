@@ -1,0 +1,83 @@
+.login {
+  background-image: url('../images/login\ bg.png');
+  background-size: cover;
+  height: 100vh;
+  padding-top: 130px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.logo {
+  position: relative;
+}
+
+.logo img {
+  width: 100vw;
+}
+
+.logo h1 {
+  color: white;
+  font-family: copperplate;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 65px;
+  transform: translateX(-50%);
+  width: 280px;
+}
+
+.container input {
+  border: 0;
+  font-size: 12px;
+  height: 20px;
+  outline: 0;
+  padding-left: 5px;
+  position: absolute;
+  width: 205px;
+}
+
+.logo input {
+  bottom: 20px;
+  left: 75px;
+}
+
+.input {
+  align-items: center;
+  bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.placa {
+  width: 230px;
+}
+
+.input input {
+  bottom: 10px;
+}
+
+.input button {
+  all: unset;
+  bottom: 9px;
+  color: #2c3283;
+  opacity: 100%;
+  position: absolute;
+  transition: 0.3s;
+}
+
+.input button:disabled {
+  opacity: 40%;
+}
+
+.login > img {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  width: 51%;
+}

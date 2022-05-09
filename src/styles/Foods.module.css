@@ -1,0 +1,31 @@
+/* stylelint-disable linebreaks */
+/* .card-container {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.foods {
+  background-image: url('../images/restaurant.jpg');
+  background-size: cover;
+  height: 100vh;
+  padding-top: 130px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* filter: blur(4px); */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.foods img {
+  width: 100px;
+}
+
+.btncategories {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}

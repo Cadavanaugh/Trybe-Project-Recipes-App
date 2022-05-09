@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
-import '../styles/Foods.css';
+import style from '../styles/Foods.module.css';
 import { fetchDrinksByCategory } from '../services/fetchFoodsAndDrinks';
 import Footer from '../components/Footer';
 import { doze, seis } from '../services/variables';
@@ -47,7 +47,7 @@ function Drinks({ location }) {
   }, [isFilter, drinks, ingredientDrink, exploreDrinks, categorizedDrinks]);
   console.log(renderCards);
   return (
-    <>
+    <div className={ style.foods }>
       <Header pageTitle="Drinks" />
       <div>
         {
@@ -78,7 +78,7 @@ function Drinks({ location }) {
               />))}
       </div>
       <Footer />
-    </>
+    </div>
 
   );
 }

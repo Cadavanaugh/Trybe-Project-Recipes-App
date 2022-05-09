@@ -28,6 +28,7 @@ function LoginProvider({ children }) {
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
     history.push('/foods');
+    return false;
   };
 
   const store = {

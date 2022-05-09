@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchFoodsByCategory } from '../services/fetchFoodsAndDrinks';
 import { doze, seis } from '../services/variables';
-import '../styles/Foods.css';
+import style from '../styles/Foods.module.css';
 
 function Foods({ location }) {
   const { meals, foodCategories, exploreMeals,
@@ -45,9 +45,10 @@ function Foods({ location }) {
   }, [meals, ingredientFood, exploreMeals, isFilter, categorizedMeals]);
 
   return (
-    <>
+    <div className={ style.foods }>
       <Header pageTitle="Foods" />
-      <div>
+      <hr />
+      <div className={ style.btncategories }>
         {
           foodCategories.slice(0, seis).map(({ strCategory }, index) => (
             <button
@@ -61,7 +62,7 @@ function Foods({ location }) {
           ))
         }
       </div>
-      <div className="card-container">
+      <div className={ style.cards }>
         {loading
           ? (<p>Loading...</p>)
           : renderCards.slice(0, doze).map(({ strMealThumb, idMeal, strMeal }, index) => (
@@ -77,7 +78,7 @@ function Foods({ location }) {
 
       </div>
       <Footer />
-    </>
+    </div>
 
   );
 }
