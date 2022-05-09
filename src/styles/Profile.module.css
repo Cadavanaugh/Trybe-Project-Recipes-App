@@ -1,0 +1,31 @@
+.container {
+  background-image: url('../images/login\ bg.png');
+  background-size: cover;
+  height: 100vh;
+  padding-top: 130px;
+  position: relative;
+}
+
+.container .button {
+  align-self: center;
+  background-color: #fab71d;
+  border-radius: 8px;
+  color: #2c3283;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  width: 250px;
+}
+
+.container h2 {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
