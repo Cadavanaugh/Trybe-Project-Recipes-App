@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import style from '../styles/Details.module.css';
 
 const Video = ({ embedId }) => (
-  <div className="video-responsive" data-testid="video">
+  <div className={ style.video } data-testid="video">
     <iframe
       width="260"
       src={ `https://www.youtube.com/embed/${embedId}` }

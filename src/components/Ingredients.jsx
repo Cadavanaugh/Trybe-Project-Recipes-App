@@ -20,13 +20,13 @@ export default function Ingredients({ recipe }) {
     <div className="ingredients-container">
       <h3>Ingredients</h3>
       {renderIngredients.map((ingredient, index) => (
-        <p
+        <ul
           key={ index }
           data-testid={ `${index}-ingredient-name-and-measure` }
         >
-          {`-${ingredient[0]} - ${ingredient[1]}`}
+          <li>{`${ingredient[0]} - ${ingredient[1]}`}</li>
 
-        </p>
+        </ul>
       ))}
     </div>
   );

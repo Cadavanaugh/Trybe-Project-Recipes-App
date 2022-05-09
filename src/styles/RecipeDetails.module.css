@@ -1,6 +1,10 @@
 .fixedButton {
   bottom: 0;
   position: fixed;
+  width: 80%;
+  margin-left: 25px;
+  background-color: #fab71d;
+  border-radius: 3px;
 }
 
 .slick img {

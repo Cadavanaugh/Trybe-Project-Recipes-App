@@ -6,6 +6,7 @@ import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
 import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import shareIcon from '../images/shareIcon.svg';
+import style from '../styles/InProgress.module.css';
 
 function FoodsInProgress() {
   const history = useHistory();
@@ -33,43 +34,49 @@ function FoodsInProgress() {
   };
 
   return (
-    <div>
+    <div className={ style.bodyDetails }>
       {recipe.length > 0 && (
         <>
-          <img
-            src={ recipe[0].strMealThumb }
-            data-testid="recipe-photo"
-            alt="algo"
-            width="200px"
-          />
-          <h2
-            data-testid="recipe-title"
-          >
-            {recipe[0].strMeal}
-          </h2>
-          {copied && <p>Link copied!</p>}
-          <button type="button" onClick={ shareFunc }>
+          <div className={ style.headerImg }>
             <img
-              src={ shareIcon }
-              alt="Share"
-              data-testid="share-btn"
+              src={ recipe[0].strMealThumb }
+              data-testid="recipe-photo"
+              alt="algo"
+              width="200px"
             />
-          </button>
-          <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
-          <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
-          <IngredientsInProgress recipe={ recipe } isDisabled={ setIsDisabled } />
-          <section data-testid="instructions">
-            <h4>Instructions</h4>
-            <p>{recipe[0].strInstructions}</p>
-          </section>
-          <button
-            type="button"
-            data-testid="finish-recipe-btn"
-            disabled={ isDisabled }
-            onClick={ handleClickDone }
-          >
-            Finish Recipe
-          </button>
+            <h2
+              data-testid="recipe-title"
+            >
+              {recipe[0].strMeal}
+            </h2>
+            {copied && <p>Link copied!</p>}
+            <button type="button" onClick={ shareFunc }>
+              <img
+                src={ shareIcon }
+                alt="Share"
+                data-testid="share-btn"
+              />
+            </button>
+            <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
+            <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
+          </div>
+          <div className={ style.menuContainer }>
+
+            <IngredientsInProgress recipe={ recipe } isDisabled={ setIsDisabled } />
+            <section className={ style.instructionsRecipe } data-testid="instructions">
+              <h4>Instructions</h4>
+              <p>{recipe[0].strInstructions}</p>
+            </section>
+            <button
+              className={ style.finishedBtn }
+              type="button"
+              data-testid="finish-recipe-btn"
+              disabled={ isDisabled }
+              onClick={ handleClickDone }
+            >
+              Finish Recipe
+            </button>
+          </div>
         </>)}
 
     </div>
