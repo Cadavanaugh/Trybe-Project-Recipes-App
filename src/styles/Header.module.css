@@ -6,4 +6,10 @@
 .header {
   align-items: center;
   display: flex;
+  padding-top: 10px;
+}
+
+.header h1 {
+  font-family: copperplate , sans-serif;
+  margin: 0;
 }

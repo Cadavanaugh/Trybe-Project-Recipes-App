@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PageButton from '../components/PageButton';
 import { fetchSurpriseMeDrink } from '../services/fetchFoodsAndDrinks';
+import style from '../styles/ExploreFoodsAndDrinks.module.css';
 
 function ExploreDrinks() {
   const history = useHistory();
@@ -13,21 +14,24 @@ function ExploreDrinks() {
     history.push(`/drinks/${id}`);
   };
   return (
-    <div>
+    <div className={ style.container }>
       <Header showSearchButton pageTitle="Explore Drinks" />
       <Footer />
-      <PageButton
-        targetPageTitle="By Ingredient"
-        dataTestId="explore-by-ingredient"
-        routePath="/explore/drinks/ingredients"
-      />
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ handleSurpriseMe }
-      >
-        Surprise me!
-      </button>
+      <div className={ style['button-container'] }>
+        <PageButton
+          targetPageTitle="By Ingredient"
+          dataTestId="explore-by-ingredient"
+          routePath="/explore/drinks/ingredients"
+        />
+        <button
+          className={ style.button }
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ handleSurpriseMe }
+        >
+          Surprise me!
+        </button>
+      </div>
     </div>
   );
 }

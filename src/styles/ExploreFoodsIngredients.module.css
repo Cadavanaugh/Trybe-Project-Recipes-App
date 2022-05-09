@@ -1,0 +1,10 @@
+.container {
+  background-image: url('../images/login\ bg.png');
+  background-size: cover;
+  height: 100vh;
+  padding-top: 130px;
+}
+
+.cards {
+  background-color: rgba(28, 30, 52, 0.62);
+}

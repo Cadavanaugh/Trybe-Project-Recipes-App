@@ -1,0 +1,24 @@
+.explore-container {
+  background-image: url('../images/login\ bg.png');
+  background-size: cover;
+  height: 100vh;
+  padding-top: 130px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .explore-container .remy {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  width: 51%;
+} */
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
