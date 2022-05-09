@@ -3,6 +3,7 @@
   background-size: cover;
   height: 100vh;
   padding-top: 130px;
+  position: relative;
 }
 
 .button-container {
@@ -10,12 +11,12 @@
   flex-direction: column;
 }
 
-/* .explore-container .remy {
-  bottom: 0;
+.explore-container .remy {
+  bottom: 68px;
   position: absolute;
-  right: 0;
-  width: 51%;
-} */
+  right: 10px;
+  width: 150px;
+}
 
 header {
   position: absolute;
