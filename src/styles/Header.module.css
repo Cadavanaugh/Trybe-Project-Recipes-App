@@ -9,4 +9,11 @@
   color: white;
   /* position: absolute; */
   /* width: 100vh; */
+  padding-top: 10px;
+}
+
+.header h1 {
+  color: white;
+  font-family: copperplate , sans-serif;
+  margin: 0;
 }

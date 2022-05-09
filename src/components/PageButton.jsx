@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import style from '../styles/PageButton.module.css';
 
 function PageButton({ targetPageTitle, routePath, dataTestId }) {
   const history = useHistory();
   return (
-    <div>
-      <button
-        type="button"
-        data-testid={ dataTestId }
-        value={ targetPageTitle }
-        onClick={ () => history.push(`${routePath}`) }
-      >
-
-        <p>{targetPageTitle}</p>
-
-      </button>
-    </div>
+    <button
+      className={ style.button }
+      type="button"
+      data-testid={ dataTestId }
+      value={ targetPageTitle }
+      onClick={ () => history.push(`${routePath}`) }
+    >
+      {targetPageTitle}
+    </button>
   );
 }
 

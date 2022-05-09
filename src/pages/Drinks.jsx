@@ -47,40 +47,39 @@ function Drinks({ location }) {
   }, [isFilter, drinks, ingredientDrink, exploreDrinks, categorizedDrinks]);
   console.log(renderCards);
   return (
-    <>
+    <div className={ style.foods }>
       <Header pageTitle="Drinks" />
-      <div className={ style.foods }>
-        <div className={ style.btncategories }>
-          {
-            drinkCategories.slice(0, seis).map(({ strCategory }, index) => (
-              <button
-                data-testid={ `${strCategory}-category-filter` }
-                type="button"
-                key={ index }
-                onClick={ () => handleCategoryFilter(strCategory) }
-              >
-                {strCategory}
-              </button>
-            ))
-          }
-        </div>
-        <div className={ style.cards }>
-          {loading ? <p>Loading...</p>
-            : renderCards.slice(0, doze)
-              .map(({ strDrinkThumb, idDrink, strDrink }, index) => (
-                <Card
-                  key={ idDrink }
-                  name={ strDrink }
-                  img={ strDrinkThumb }
-                  index={ index }
-                  path={ `/drinks/${idDrink}` }
-                  testIDCard="recipe"
-                  testIDTitle="card-name"
-                />))}
-        </div>
+      <hr />
+      <div className={ style.btncategories }>
+        {
+          drinkCategories.slice(0, seis).map(({ strCategory }, index) => (
+            <button
+              data-testid={ `${strCategory}-category-filter` }
+              type="button"
+              key={ index }
+              onClick={ () => handleCategoryFilter(strCategory) }
+            >
+              {strCategory}
+            </button>
+          ))
+        }
+      </div>
+      <div className={ style.cards }>
+        {loading ? <p>Loading...</p>
+          : renderCards.slice(0, doze)
+            .map(({ strDrinkThumb, idDrink, strDrink }, index) => (
+              <Card
+                key={ idDrink }
+                name={ strDrink }
+                img={ strDrinkThumb }
+                index={ index }
+                path={ `/drinks/${idDrink}` }
+                testIDCard="recipe"
+                testIDTitle="card-name"
+              />))}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

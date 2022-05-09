@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchRecipesByIngredient } from '../services/fetchFoodsAndDrinks';
 import { doze } from '../services/variables';
+import style from '../styles/ExploreFoodsIngredients.module.css';
 
 function ExploreFoodsIngredients() {
   const { setError, setExploreMeals } = useContext(RecipesContext);
@@ -25,10 +26,10 @@ function ExploreFoodsIngredients() {
 
   const imgAPI = 'https://www.themealdb.com/images/ingredients';
   return (
-    <>
+    <div className={ style.container }>
       <Header pageTitle="Explore Ingredients" showSearchButton />
       {info.meals && (
-        <div>
+        <div className={ style['cards-container'] }>
           {info.meals.map((ingredient, index) => (
             index < doze && (
               <Link
@@ -38,6 +39,7 @@ function ExploreFoodsIngredients() {
                 onClick={ () => handleClick((ingredient.strIngredient)) }
               >
                 <div
+                  className={ style.cards }
                   key={ index }
                   data-testid={ `${index}-ingredient-card` }
                 >
@@ -59,7 +61,7 @@ function ExploreFoodsIngredients() {
         </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 }
 

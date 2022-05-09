@@ -22,7 +22,7 @@
 
 .logo h1 {
   color: white;
-  font-family: copperplate;
+  font-family: copperplate , sans-serif;
   left: 50%;
   position: absolute;
   text-align: center;
