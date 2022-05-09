@@ -45,39 +45,42 @@ function Foods({ location }) {
   }, [meals, ingredientFood, exploreMeals, isFilter, categorizedMeals]);
 
   return (
-    <div className={ style.foods }>
+    <>
       <Header pageTitle="Foods" />
-      <hr />
-      <div className={ style.btncategories }>
-        {
-          foodCategories.slice(0, seis).map(({ strCategory }, index) => (
-            <button
-              data-testid={ `${strCategory}-category-filter` }
-              type="button"
-              key={ index }
-              onClick={ () => handleCategoryFilter(strCategory) }
-            >
-              {strCategory}
-            </button>
-          ))
-        }
-      </div>
-      <div className={ style.cards }>
-        {loading
-          ? (<p>Loading...</p>)
-          : renderCards.slice(0, doze).map(({ strMealThumb, idMeal, strMeal }, index) => (
-            <Card
-              key={ idMeal }
-              name={ strMeal }
-              img={ strMealThumb }
-              index={ index }
-              path={ `/foods/${idMeal}` }
-              testIDCard="recipe"
-              testIDTitle="card-name"
-            />))}
+      <div className={ style.foods }>
+        <hr />
+        <div className={ style.btncategories }>
+          {
+            foodCategories.slice(0, seis).map(({ strCategory }, index) => (
+              <button
+                data-testid={ `${strCategory}-category-filter` }
+                type="button"
+                key={ index }
+                onClick={ () => handleCategoryFilter(strCategory) }
+              >
+                {strCategory}
+              </button>
+            ))
+          }
+        </div>
+        <div className={ style.cards }>
+          {loading
+            ? (<p>Loading...</p>)
+            : renderCards.slice(0, doze)
+              .map(({ strMealThumb, idMeal, strMeal }, index) => (
+                <Card
+                  key={ idMeal }
+                  name={ strMeal }
+                  img={ strMealThumb }
+                  index={ index }
+                  path={ `/foods/${idMeal}` }
+                  testIDCard="recipe"
+                  testIDTitle="card-name"
+                />))}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
 
   );
 }
