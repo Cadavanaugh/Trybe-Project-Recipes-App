@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import { fetchDrinkRecipeByIngredient } from '../services/fetchFoodsAndDrinks';
 import { doze } from '../services/variables';
+import style from '../styles/ExploreFoodsIngredients.module.css';
 
 function ExploreDrinksIngredients() {
   const { setError, setExploreDrinks } = useContext(RecipesContext);
@@ -25,10 +26,10 @@ function ExploreDrinksIngredients() {
 
   const imgAPI = 'https://www.thecocktaildb.com/images/ingredients';
   return (
-    <>
+    <div className={ style.container }>
       <Header pageTitle="Explore Ingredients" showSearchButton />
       {info.drinks && (
-        <div>
+        <div className={ style['cards-container'] }>
           {info.drinks.map((ingredient, index) => (
             index < doze && (
               <Link
@@ -38,6 +39,7 @@ function ExploreDrinksIngredients() {
                 onClick={ () => handleClick((ingredient.strIngredient1)) }
               >
                 <div
+                  className={ style.cards }
                   key={ index }
                   data-testid={ `${index}-ingredient-card` }
                 >
@@ -59,7 +61,7 @@ function ExploreDrinksIngredients() {
         </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 }
 
