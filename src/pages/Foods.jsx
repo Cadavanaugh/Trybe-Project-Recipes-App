@@ -46,8 +46,8 @@ function Foods({ location }) {
 
   return (
     <>
-      <Header pageTitle="Foods" />
       <div className={ style.foods }>
+        <Header pageTitle="Foods" />
         <hr />
         <div className={ style.btncategories }>
           {
