@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import style from '../styles/Profile.module.css';
+import remy from '../images/remy.png';
 
 function Profile() {
   const history = useHistory();
@@ -18,12 +19,12 @@ function Profile() {
   return (
     <div className={ style.container }>
       <Header pageTitle="Profile" showSearchButton />
+      <h2
+        data-testid="profile-email"
+      >
+        {getEmail?.email}
+      </h2>
       <div className={ style['button-container'] }>
-        <h2
-          data-testid="profile-email"
-        >
-          {getEmail?.email}
-        </h2>
         <button
           className={ style.button }
           data-testid="profile-done-btn"
@@ -49,6 +50,7 @@ function Profile() {
           Logout
         </button>
       </div>
+      <img src={ remy } alt="Remy with a spoon" className={ style.remy } />
       <Footer />
     </div>
   );

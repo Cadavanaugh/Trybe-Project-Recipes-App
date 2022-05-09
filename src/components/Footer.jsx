@@ -4,6 +4,9 @@ import drinkIcon from '../images/drinkIcon.png';
 import exploreIcon from '../images/exploreIcon.png';
 import mealIcon from '../images/mealIcon.png';
 import style from '../styles/Footer.module.css';
+// import exploreIcon from '../images/compass.svg';
+// import mealIcon from '../images/meal.svg';
+// import drinkIcon from '../images/drink.svg';
 
 export default function Footer() {
   const history = useHistory();
