@@ -49,7 +49,7 @@ function Drinks({ location }) {
   return (
     <div className={ style.foods }>
       <Header pageTitle="Drinks" />
-      <div>
+      <div className={ style.btncategories }>
         {
           drinkCategories.slice(0, seis).map(({ strCategory }, index) => (
             <button
@@ -63,7 +63,7 @@ function Drinks({ location }) {
           ))
         }
       </div>
-      <div className="card-container">
+      <div className={ style.cards }>
         {loading ? <p>Loading...</p>
           : renderCards.slice(0, doze)
             .map(({ strDrinkThumb, idDrink, strDrink }, index) => (

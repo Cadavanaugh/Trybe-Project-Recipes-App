@@ -8,17 +8,20 @@
   background-image: url('../images/restaurant.jpg');
   background-size: cover;
   height: 100vh;
-  padding-top: 130px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
   /* filter: blur(4px); */
-}
+  color: white;
+  display: grid;
+ }
 
 .cards {
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 10px;
+  color: white;
+  justify-content: center;
+  justify-content: space-between;
 }
 
 .foods img {
@@ -28,4 +31,9 @@
 .btncategories {
   display: grid;
   grid-template-columns: auto auto auto;
+}
+
+.btncategories button {
+  background-color: yellow;
+  color: #2c3283;
 }

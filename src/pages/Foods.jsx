@@ -75,7 +75,6 @@ function Foods({ location }) {
               testIDCard="recipe"
               testIDTitle="card-name"
             />))}
-
       </div>
       <Footer />
     </div>
