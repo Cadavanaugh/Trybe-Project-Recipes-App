@@ -16,12 +16,19 @@
  }
 
 .cards {
-  display: grid;
+  /* display: grid;
   grid-template-columns: auto auto auto;
   padding: 10px;
   color: white;
   justify-content: center;
+  justify-content: space-between; */
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+  justify-content: center;
+  overflow-y: scroll;
   justify-content: space-between;
+
 }
 
 .foods img {
@@ -31,6 +38,7 @@
 .btncategories {
   display: grid;
   grid-template-columns: auto auto auto;
+  height: 50px;
 }
 
 .btncategories button {
