@@ -1,0 +1,39 @@
+/* stylelint-disable linebreaks */
+/* .card-container {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.foods {
+  background-image: url('../images/restaurant.jpg');
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* filter: blur(4px); */
+  color: white;
+  display: grid;
+ }
+
+.cards {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  color: white;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.foods img {
+  width: 100px;
+}
+
+.btncategories {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.btncategories button {
+  background-color: yellow;
+  color: #2c3283;
+}

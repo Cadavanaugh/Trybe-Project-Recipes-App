@@ -7,27 +7,29 @@ import style from '../styles/Explore.module.css';
 
 function Explore() {
   return (
-    <div className={ style['explore-container'] }>
+    <>
       <Header
         pageTitle="Explore"
         showSearchButton
         className={ style.header }
       />
-      <div className={ style['button-container'] }>
-        <PageButton
-          targetPageTitle="Explore Foods"
-          dataTestId="explore-foods"
-          routePath="/explore/foods"
-        />
-        <PageButton
-          targetPageTitle="Explore Drinks"
-          dataTestId="explore-drinks"
-          routePath="/explore/drinks"
-        />
+      <div className={ style['explore-container'] }>
+        <div className={ style['button-container'] }>
+          <PageButton
+            targetPageTitle="Explore Foods"
+            dataTestId="explore-foods"
+            routePath="/explore/foods"
+          />
+          <PageButton
+            targetPageTitle="Explore Drinks"
+            dataTestId="explore-drinks"
+            routePath="/explore/drinks"
+          />
+        </div>
+        {/* <img src={ remy } alt="Remy with a spoon" /> */}
+        <Footer />
       </div>
-      {/* <img src={ remy } alt="Remy with a spoon" /> */}
-      <Footer />
-    </div>
+    </>
   );
 }
 
