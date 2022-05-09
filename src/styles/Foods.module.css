@@ -9,10 +9,11 @@
   background-size: cover;
   height: 100vh;
   background-position: center;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   /* filter: blur(4px); */
   color: white;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
  }
 
 .cards {
@@ -36,9 +37,8 @@
 }
 
 .btncategories {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  height: 50px;
+  display: flex;
+  width: 50px;
 }
 
 .btncategories button {
