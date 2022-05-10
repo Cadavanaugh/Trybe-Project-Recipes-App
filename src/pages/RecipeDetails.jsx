@@ -11,6 +11,7 @@ import { quarentaTres, trintaDois } from '../services/variables';
 import Carroussel from '../components/Carroussel';
 import RecipeButton from '../components/RecipeButton';
 import ShareButton from '../components/ShareButton';
+import style from '../styles/Details.module.css';
 
 function RecipeDetails() {
   const { setError, meals, drinks } = useContext(RecipesContext);
@@ -30,6 +31,8 @@ function RecipeDetails() {
     }
   };
 
+  console.log(recipe);
+
   useEffect(() => {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
@@ -41,39 +44,54 @@ function RecipeDetails() {
   }, []);
 
   return (
-    <div>
+    <div className={ style.bodyDetails }>
       {
         recipe.length && (
           <>
-            <img
-              src={ recipe[0][`str${key}Thumb`] }
-              data-testid="recipe-photo"
-              alt="algo"
-              width="200px"
-            />
+            <div className={ style.headerImg }>
+              <img
+                className={ style.imgDetails }
+                src={ recipe[0][`str${key}Thumb`] }
+                data-testid="recipe-photo"
+                alt="algo"
+                width="200px"
+              />
+              <section>
+                <h1
+                  className={ style.tittle }
+                  data-testid="recipe-title"
+                >
+                  {recipe[0][`str${key}`]}
+                </h1>
+                <ShareButton />
+                <FavoriteButton
+                  recipe={ recipe }
+                  foodsPath={ foodsPath }
+                  keyPath={ key }
+                />
+              </section>
+              <h4 data-testid="recipe-category">
+                {foodsPath ? recipe[0].strCategory : recipe[0].strAlcoholic}
+              </h4>
+            </div>
+            <div className={ style.containerMenu }>
+              <Ingredients recipe={ recipe } />
 
-            <section>
-              <h1 data-testid="recipe-title">{recipe[0][`str${key}`]}</h1>
-              <ShareButton />
-              <FavoriteButton recipe={ recipe } foodsPath={ foodsPath } keyPath={ key } />
-            </section>
+              <section
+                data-testid="instructions"
+              >
+                <h3 className={ style.recommendedText }>Instructions</h3>
+                <p>{recipe[0].strInstructions}</p>
+              </section>
 
-            <h3 data-testid="recipe-category">
-              {foodsPath ? recipe[0].strCategory : recipe[0].strAlcoholic}
-            </h3>
-            <Ingredients recipe={ recipe } />
+              {foodsPath && <Video
+                embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
+              />}
 
-            <section data-testid="instructions">
-              <h4>Instructions</h4>
-              <p>{recipe[0].strInstructions}</p>
-            </section>
+            </div>
 
-            {foodsPath && <Video
-              embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
-            />}
-
-            <section>
-              <h3>Recommended</h3>
+            <h3 className={ style.recommendedText }>Recommended</h3>
+            <section className={ style.recommendedContainer }>
               <Carroussel recommended={ recommended } foodsPath={ foodsPath } />
             </section>
 

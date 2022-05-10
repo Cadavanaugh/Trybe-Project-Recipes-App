@@ -1,0 +1,43 @@
+.bodyDetails {
+  background-color: #3C3F63;
+  color: white;
+  font-family: copperplate , sans-serif;
+}
+
+.headerImg {
+  display: flex;
+  width: 100%;
+  background-color: rgba(28, 30, 52, 0.62);
+  padding-bottom: 20px;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-top: 20px;
+}
+
+.imgInProgress {
+    align-items: center;
+    margin-top: 40px;
+    border-radius: 5px;
+  
+}
+
+.checkInProgress {
+  display: flex;
+  align-items: center;
+}
+
+.menuContainer, .instructionsRecipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: 10px;
+}
+
+.finishedBtn {
+  width: 80%;
+  margin-left: 25px;
+  background-color: #fab71d;
+  border-radius: 3px;
+}

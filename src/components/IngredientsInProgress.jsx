@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import React, { useContext, useState, useEffect } from 'react';
 import RecipesContext from '../context/RecipesContext';
+import style from '../styles/InProgress.module.css';
 
 export default function IngredientsInProgress({ recipe, isDisabled }) {
   const { pathname } = useContext(RecipesContext);
@@ -66,6 +67,7 @@ export default function IngredientsInProgress({ recipe, isDisabled }) {
         .map((ingredient, index) => (
           <>
             <label
+              className={ style.checkInProgress }
               key={ index }
               htmlFor={ `ingredient-${index}` }
               data-testid={ `${index}-ingredient-step` }
@@ -77,12 +79,12 @@ export default function IngredientsInProgress({ recipe, isDisabled }) {
                 onChange={ handleChange }
                 id={ `ingredient-${index}` }
               />
-              <p
+              <span
                 style={ isCheck[`isCheck${index}`] ? { textDecoration: 'line-through' }
                   : { textDecoration: '' } }
               >
                 {`-${ingredient}`}
-              </p>
+              </span>
             </label>
             <br />
           </>

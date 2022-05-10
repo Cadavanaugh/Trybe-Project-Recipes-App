@@ -1,0 +1,46 @@
+.bodyDetails {
+  background-color: #3C3F63;
+  color: white;
+  font-family: copperplate , sans-serif;
+}
+
+.headerImg {
+  display: flex;
+  width: 100%;
+  background-color: rgba(28, 30, 52, 0.62);
+  padding-bottom: 20px;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.imgDetails {
+  align-items: center;
+  margin-top: 40px;
+  border-radius: 5px;
+}
+
+.containerMenu{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  margin-top: 15px;
+  padding: 0 20px;
+}
+
+.video {
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.recommendedText {
+  margin-left: 85px;
+}
+
+.recommendedContainer {
+  background-color: #a94c40;
+  padding: 30px 0px 0px 30px;
+  
+}

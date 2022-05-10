@@ -73,3 +73,9 @@ export const fetchSurpriseMeDrink = async () => {
   const data = await result.json();
   return data.drinks;
 };
+
+export const fetchFoodsByNationality = async (category) => {
+  const result = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${category}`);
+  const data = await result.json();
+  return data.meals;
+};
