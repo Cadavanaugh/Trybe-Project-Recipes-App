@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import RecipesContext from '../context/RecipesContext';
-import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import shareIcon from '../images/shareIcon.svg';
+import { fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
 import style from '../styles/InProgress.module.css';
 
 function FoodsInProgress() {
@@ -39,6 +39,7 @@ function FoodsInProgress() {
         <>
           <div className={ style.headerImg }>
             <img
+              className={ style.imgInProgress }
               src={ recipe[0].strMealThumb }
               data-testid="recipe-photo"
               alt="algo"
