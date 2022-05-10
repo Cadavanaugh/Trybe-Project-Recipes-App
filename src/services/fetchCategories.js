@@ -17,3 +17,13 @@ export const fetchDrinkCategories = (succcess, error) => {
           ...json.drinks])
         : error(json))));
 };
+
+export const fetchNationalities = (succcess, error) => {
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+    .then((result) => result.json()
+      .then((json) => (result.ok
+        ? succcess([
+          { strArea: 'All' },
+          ...json.meals])
+        : error(json))));
+};

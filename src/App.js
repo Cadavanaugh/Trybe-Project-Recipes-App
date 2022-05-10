@@ -3,14 +3,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
-// import DrinksIngredients from './pages/DrinksIngredients';
 import DrinksInProgress from './pages/DrinksInProgress';
 import Explore from './pages/Explore';
 import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreFoods from './pages/ExploreFoods';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
-// import FoodsIngredients from './pages/FoodsIngredients';
 import FoodsInProgress from './pages/FoodsInProgress';
 import Login from './pages/Login';
 import Nationalities from './pages/ExploreNationalities';
@@ -18,8 +16,7 @@ import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
-// import RandomFoodPage from './pages/RandomFoodPage';
-// import RandomDrink from './pages/RandomDrink';
+import DrinkExploreNationalities from './pages/DrinkExploreNationalities';
 
 function App() {
   return (
@@ -59,6 +56,11 @@ function App() {
           exact
           path="/explore/foods/nationalities"
           component={ Nationalities }
+        />
+        <Route
+          exact
+          path="/explore/drinks/nationalities"
+          component={ DrinkExploreNationalities }
         />
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/done-recipes" component={ DoneRecipes } />

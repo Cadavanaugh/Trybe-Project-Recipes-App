@@ -31,6 +31,8 @@ function RecipeDetails() {
     }
   };
 
+  console.log(recipe);
+
   useEffect(() => {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
