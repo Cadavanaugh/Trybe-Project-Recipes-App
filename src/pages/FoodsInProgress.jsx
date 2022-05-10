@@ -20,13 +20,12 @@ function FoodsInProgress() {
   const foodsPath = pathname.includes('/foods');
   const [isDisabled, setIsDisabled] = useState(true);
 
-  console.log(recipe);
-
   useEffect(() => {
     fetchFoodRecipe(idReceita, setRecipe, setError);
   }, [idReceita, setError]);
 
   const saveDoneRecipe = () => {
+    const strTags = recipe[0].strTags === '' || recipe[0].strTags === null;
     const createDoneRecipe = {
       id: idReceita,
       type: 'food',
@@ -36,7 +35,7 @@ function FoodsInProgress() {
       name: recipe[0].strMeal,
       image: recipe[0].strMealThumb,
       doneDate: new Date().toLocaleDateString(),
-      tags: recipe[0].strTags === '' ? [] : recipe[0].strTags.split(',', 2),
+      tags: strTags ? [] : recipe[0].strTags.split(',', 2),
     };
     if (!localStorage.doneRecipes) localStorage.doneRecipes = '[]';
     const done = JSON.parse(localStorage.doneRecipes);

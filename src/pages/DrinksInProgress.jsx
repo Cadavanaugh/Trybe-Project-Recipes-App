@@ -20,11 +20,36 @@ function DrinksInProgress() {
   const foodsPath = pathname.includes('/foods');
   const [isDisabled, setIsDisabled] = useState(true);
 
+  console.log(recipe);
+
   useEffect(() => {
     fetchDrinkRecipe(idReceita, setRecipe, setError);
   }, [idReceita, setError]);
 
+  const saveDoneRecipe = () => {
+    const strTags = recipe[0].strTags === '' || recipe[0].strTags === null;
+    const createDoneRecipe = {
+      id: idReceita,
+      type: 'drink',
+      nationality: '',
+      category: recipe[0].strCategory,
+      alcoholicOrNot: recipe[0].strAlcoholic,
+      name: recipe[0].strDrink,
+      image: recipe[0].strDrinkThumb,
+      doneDate: new Date().toLocaleDateString(),
+      tags: strTags ? [] : recipe[0].strTags.split(',', 2),
+    };
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = '[]';
+    const done = JSON.parse(localStorage.doneRecipes);
+    const isDone = done.find((fav) => fav.id === idReceita);
+    if (!isDone) {
+      done.push(createDoneRecipe);
+      localStorage.doneRecipes = JSON.stringify(done);
+    }
+  };
+
   const handleClickDone = () => {
+    saveDoneRecipe();
     history.push('/done-recipes');
   };
 
