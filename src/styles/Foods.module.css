@@ -1,36 +1,19 @@
-/* stylelint-disable linebreaks */
-/* .card-container {
-  display: flex;
-  flex-wrap: wrap;
-} */
-
 .foods {
   background-image: url('../images/restaurantBG.png');
   background-size: cover;
-  /* height: 100vh; */
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  /* filter: blur(4px); */
   color: white;
   display: flex;
   flex-direction: column;
   padding-top: 30px;
- }
+}
 
 .cards {
-  /* display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px;
-  color: white;
-  justify-content: center;
-  justify-content: space-between; */
   display: flex;
   flex-wrap: wrap;
   height: 400px;
-  justify-content: center;
-  overflow-y: scroll;
   justify-content: space-between;
   margin: 10px;
+  overflow-y: scroll;
 }
 
 .cards img {
@@ -46,7 +29,7 @@
 
 .btncategories button {
   background-color: #fab71d;
+  border-radius: 8px;
   color: #2c3283;
   width: 150px;
-  border-radius: 8px;
 }
