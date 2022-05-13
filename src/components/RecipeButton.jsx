@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import style from '../styles/RecipeDetails.module.css';
+import style from '../styles/Details.module.css';
 
 function RecipeButton({ foodsPath, idReceita }) {
   const [buttonName, setButtonName] = useState('Start Recipe');

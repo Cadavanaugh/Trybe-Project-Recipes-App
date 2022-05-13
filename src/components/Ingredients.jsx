@@ -1,5 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import style from '../styles/Details.module.css';
 
 export default function Ingredients({ recipe }) {
   const ingredientsList = Object.entries(recipe[0])
@@ -17,7 +18,7 @@ export default function Ingredients({ recipe }) {
   }, []);
 
   return (
-    <div className="ingredients-container">
+    <div className={ style.ingredients }>
       <h3>Ingredients</h3>
       {renderIngredients.map((ingredient, index) => (
         <ul

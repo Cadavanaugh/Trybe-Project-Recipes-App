@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import Slider from 'react-slick';
+import RecipesContext from '../context/RecipesContext';
 import { seis } from '../services/variables';
 import Card from './Card';
-import RecipesContext from '../context/RecipesContext';
-import style from '../styles/RecipeDetails.module.css';
 
 export default function Carroussel({ recommended, foodsPath }) {
   const { pathname } = useContext(RecipesContext);
   const keyRecommended = pathname.includes('/foods') ? 'Drink' : 'Meal';
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 2,
@@ -18,7 +17,7 @@ export default function Carroussel({ recommended, foodsPath }) {
   };
 
   return (
-    <Slider { ...settings } className={ style.slick }>
+    <Slider { ...settings }>
       {
         recommended.slice(0, seis)
           .map((item, index) => (

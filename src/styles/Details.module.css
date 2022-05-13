@@ -2,6 +2,7 @@
   background-color: #3c3f63;
   color: white;
   font-family: copperplate , sans-serif;
+  padding-bottom: 53px;
 }
 
 .headerImg {
@@ -9,18 +10,63 @@
   background-color: rgba(28, 30, 52, 0.62);
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  padding: 40px 20px 20px;
   position: relative;
   width: 100%;
 }
 
-.imgDetails {
-  align-items: center;
-  border-radius: 5px;
-  margin-top: 40px;
+.pic {
+  position: relative;
 }
 
-.containerMenu {
+.gradient {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) -60%, rgba(255, 255, 255, 0) 30%);
+  border-radius: 5px;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.pic img {
+  border-radius: 5px;
+}
+
+.pic div:last-of-type {
+  bottom: 6px;
+  position: absolute;
+  right: 1px;
+  text-align: right;
+  z-index: 3;
+}
+
+.pic div button {
+  all: unset;
+  margin: 0 5px;
+}
+
+.titles {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.titles * {
+  margin: 0;
+  padding: 0;
+}
+
+.titles h1 {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.titles h4 {
+  color: #c1c1c1;
+  font-size: 20px;
+  text-transform: lowercase;
+}
+
+.ingredientsContainer {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -29,18 +75,63 @@
   position: relative;
 }
 
-.video {
-  align-items: center;
-  margin: 20px;
-  padding: 20px;
+.ingredients, .instructions {
+  margin: 10px 0;
+  width: 100%;
 }
 
-.recommendedText {
-  margin-left: 85px;
+.ingredients h3 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.ingredients ul {
+  list-style-position: inside;
+  padding-left: 20px;
+}
+
+.instructions h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.instructions p {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  text-align: justify;
+  width: 85%;
+}
+
+.video {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.video iframe {
+  width: 74%;
 }
 
 .recommendedContainer {
   background-color: #a94c40;
-  padding: 30px 0 0 30px;
+}
 
+.recommendedContainer h3 {
+  background-color: #3c3f63;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.fixedButton {
+  background-color: #fab71d;
+  border: 0;
+  border-radius: 2px;
+  bottom: 0;
+  color: #2c3283;
+  left: 47%;
+  margin: 10px 0;
+  padding: 4px 10px;
+  position: fixed;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  width: 80%;
 }

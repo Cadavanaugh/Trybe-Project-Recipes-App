@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import Carroussel from '../components/Carroussel';
 import FavoriteButton from '../components/FavoriteButton';
 import Ingredients from '../components/Ingredients';
-import Video from '../components/Video';
-import RecipesContext from '../context/RecipesContext';
-import { fetchFoodRecipe, fetchDrinkRecipe } from '../services/fetchFoodsAndDrinks';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { quarentaTres, trintaDois } from '../services/variables';
-import Carroussel from '../components/Carroussel';
 import RecipeButton from '../components/RecipeButton';
 import ShareButton from '../components/ShareButton';
+import Video from '../components/Video';
+import RecipesContext from '../context/RecipesContext';
+import { fetchDrinkRecipe, fetchFoodRecipe } from '../services/fetchFoodsAndDrinks';
+import { quarentaTres, trintaDois } from '../services/variables';
 import style from '../styles/Details.module.css';
 
 function RecipeDetails() {
@@ -37,9 +37,6 @@ function RecipeDetails() {
     if (foodsPath) {
       fetchFoodRecipe(idReceita, setRecipe, setError);
     } else fetchDrinkRecipe(idReceita, setRecipe, setError);
-    // if (randomPath) {
-    //   fetchRandomFood(idReceita, setRecipe, setError);
-    // }
     getDoneRecipes();
   }, []);
 
@@ -48,53 +45,47 @@ function RecipeDetails() {
       {
         recipe.length && (
           <>
-            <div className={ style.headerImg }>
-              <img
-                className={ style.imgDetails }
-                src={ recipe[0][`str${key}Thumb`] }
-                data-testid="recipe-photo"
-                alt="algo"
-                width="200px"
-              />
-              <section>
-                <h1
-                  className={ style.tittle }
-                  data-testid="recipe-title"
-                >
+            <section className={ style.headerImg }>
+              <div className={ style.pic }>
+                <div className={ style.gradient } />
+                <img
+                  src={ recipe[0][`str${key}Thumb`] }
+                  data-testid="recipe-photo"
+                  alt="algo"
+                  width="200px"
+                />
+                <div>
+                  <ShareButton />
+                  <FavoriteButton
+                    recipe={ recipe }
+                    foodsPath={ foodsPath }
+                    keyPath={ key }
+                  />
+                </div>
+              </div>
+              <div className={ style.titles }>
+                <h1 data-testid="recipe-title">
                   {recipe[0][`str${key}`]}
                 </h1>
-                <ShareButton />
-                <FavoriteButton
-                  recipe={ recipe }
-                  foodsPath={ foodsPath }
-                  keyPath={ key }
-                />
-              </section>
-              <h4 data-testid="recipe-category">
-                {foodsPath ? recipe[0].strCategory : recipe[0].strAlcoholic}
-              </h4>
-            </div>
-            <div className={ style.containerMenu }>
+                <h4 data-testid="recipe-category">
+                  {foodsPath ? recipe[0].strCategory : recipe[0].strAlcoholic}
+                </h4>
+              </div>
+            </section>
+            <section className={ style.ingredientsContainer }>
               <Ingredients recipe={ recipe } />
-
-              <section
-                data-testid="instructions"
-              >
-                <h3 className={ style.recommendedText }>Instructions</h3>
-                <p>{recipe[0].strInstructions}</p>
-              </section>
-
-              {foodsPath && <Video
-                embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
-              />}
-
-            </div>
-
-            <h3 className={ style.recommendedText }>Recommended</h3>
+            </section>
+            <section data-testid="instructions" className={ style.instructions }>
+              <h3>Instructions</h3>
+              <p>{recipe[0].strInstructions}</p>
+            </section>
+            {foodsPath && <Video
+              embedId={ recipe[0].strYoutube.substring(trintaDois, quarentaTres) }
+            />}
             <section className={ style.recommendedContainer }>
+              <h3>Recommended</h3>
               <Carroussel recommended={ recommended } foodsPath={ foodsPath } />
             </section>
-
             { isNotRecipeDone && (<RecipeButton
               foodsPath={ foodsPath }
               idReceita={ idReceita }
