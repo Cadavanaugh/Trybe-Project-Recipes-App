@@ -11,9 +11,9 @@
 .cards {
   display: flex;
   flex-wrap: wrap;
-  height: 400px;
   justify-content: space-between;
   margin: 10px;
+  padding-bottom: 50px;
 }
 
 .cards img {

@@ -1,5 +1,30 @@
 .componentCard {
+  align-items: center;
   background-color: rgba(28, 30, 52, 0.62);
   border-radius: 8px;
-  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 30%;
+}
+
+.componentCard a {
+  margin-bottom: 8px;
+}
+
+.componentCard a img {
+  border-radius: 6px;
+  width: 90px;
+}
+
+.componentCard p {
+  margin: 0;
+  max-height: 50px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
