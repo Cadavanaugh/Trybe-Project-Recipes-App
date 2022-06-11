@@ -18,8 +18,8 @@ We were assigned to develop a mobile web recipes app, <ins>therefore the styliza
 
 ## 📱 Demo
 <p align='center'>
-  <img src='/src/images/readme/login.png' width=300>
-  <img src='/src/images/readme/foods.png' width=300>
-  <img src='/src/images/readme/recipe.png' width=300>
+  <img src='/src/images/readme/login.png' width=200>
+  <img src='/src/images/readme/foods.png' width=200>
+  <img src='/src/images/readme/recipe.png' width=200>
 </p>
 
