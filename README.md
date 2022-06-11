@@ -11,7 +11,7 @@ We were assigned to develop a mobile web recipes app, <ins>therefore the styliza
 [Daniel Figueiredo](https://github.com/Danielfs94)|[Jovane Castro](https://github.com/Cadavanaugh)|[Queite Castiglioni](https://github.com/queite)|[Renata Araujo](https://github.com/RenataCastroAraujo)|[Rômulo Rodrigues](https://github.com/romulo-rp29)
 
 ## ✨ Features
- - **FOODS API** & **DRINKS API** consumption
+ - **TheMealsDB** & **TheCocktailDB** API consumption
  - State management with **Context API**.
  - Style modularization with **CSS Modules**.
  - SPA navigation with **React Router DOM**.
