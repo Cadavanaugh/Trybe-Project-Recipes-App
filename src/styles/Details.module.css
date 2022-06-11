@@ -20,7 +20,7 @@
 }
 
 .gradient {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) -60%, rgba(255, 255, 255, 0) 30%);
+  background: linear-gradient(0deg, white -60%, rgba(255, 255, 255, 0) 30%);
   border-radius: 5px;
   height: 100%;
   position: absolute;

@@ -3,15 +3,36 @@
   padding: 0;
 }
 
-.header {
+.profile {
   align-items: center;
+  border-bottom: 1px solid white;
   color: white;
   display: flex;
-  padding-top: 10px;
+  padding: 10px;
 }
 
-.header h1 {
+.profile div {
+  align-items: center;
+  aspect-ratio: 1/1;
+  background-color: white;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.profile p {
+  margin-top: 12px;
+}
+
+.search {
+  display: flex;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.search h1 {
   color: white;
   font-family: copperplate , sans-serif;
-  margin: 0;
+  margin-right: 10px;
 }

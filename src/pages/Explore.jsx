@@ -11,7 +11,6 @@ function Explore() {
       <Header
         pageTitle="Explore"
         showSearchButton
-        className={ style.header }
       />
       <div className={ style['button-container'] }>
         <PageButton

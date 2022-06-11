@@ -2,13 +2,13 @@
   background-image: url('../images/login\ bg.png');
   background-size: cover;
   height: 100vh;
-  padding-top: 130px;
   position: relative;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 }
 
 .explore-container .remy {
@@ -16,10 +16,4 @@
   position: absolute;
   right: 10px;
   width: 150px;
-}
-
-header {
-  position: absolute;
-  top: 0;
-  width: 100vw;
 }

@@ -6,12 +6,15 @@ import SearchButton from './SearchButton';
 
 function Header({ pageTitle, showSearchButton }) {
   return (
-    <header className={ style.header }>
-      <ProfileButton />
-      <h1 data-testid="page-title">{pageTitle}</h1>
-      {
-        !showSearchButton ? <SearchButton /> : null
-      }
+    <header>
+      <div className={ style.profile }>
+        <ProfileButton />
+        <p>jovanecastro12@gmail.com</p>
+      </div>
+      <div className={ style.search }>
+        <h1 data-testid="page-title">{pageTitle}</h1>
+        {!showSearchButton ? <SearchButton /> : null}
+      </div>
     </header>
   );
 }

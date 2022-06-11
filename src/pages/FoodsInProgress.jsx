@@ -68,9 +68,7 @@ function FoodsInProgress() {
               alt="algo"
               width="200px"
             />
-            <h2
-              data-testid="recipe-title"
-            >
+            <h2 data-testid="recipe-title">
               {recipe[0].strMeal}
             </h2>
             {copied && <p>Link copied!</p>}
@@ -85,7 +83,6 @@ function FoodsInProgress() {
             <p data-testid="recipe-category">{ recipe[0].strCategory }</p>
           </div>
           <div className={ style.menuContainer }>
-
             <IngredientsInProgress recipe={ recipe } isDisabled={ setIsDisabled } />
             <section className={ style.instructionsRecipe } data-testid="instructions">
               <h4>Instructions</h4>

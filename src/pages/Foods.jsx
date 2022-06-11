@@ -47,7 +47,6 @@ function Foods({ location }) {
   return (
     <div className={ style.foods }>
       <Header pageTitle="Foods" />
-      <hr />
       <div className={ style.btncategories }>
         {
           foodCategories.slice(0, seis).map(({ strCategory }, index) => (

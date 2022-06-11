@@ -19,8 +19,6 @@ function Drinks({ location }) {
 
   const handleCategoryFilter = async (choosenCategory) => {
     setIngredientDrink([]);
-    console.log(category);
-    console.log(choosenCategory);
     if (choosenCategory === category || choosenCategory === 'All') {
       setIsFilter(false);
     } else {
@@ -32,7 +30,6 @@ function Drinks({ location }) {
       setLoading(false);
     }
   };
-  console.log(categorizedDrinks);
   // Usado para decidir o que deve ser renderizado
   useEffect(() => {
     if (ingredientDrink.length) {
@@ -45,7 +42,6 @@ function Drinks({ location }) {
       setRenderCards(drinks);
     }
   }, [isFilter, drinks, ingredientDrink, exploreDrinks, categorizedDrinks]);
-  console.log(renderCards);
   return (
     <div className={ style.foods }>
       <Header pageTitle="Drinks" />
